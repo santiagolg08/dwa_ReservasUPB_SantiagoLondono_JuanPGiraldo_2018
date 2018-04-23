@@ -1,0 +1,25 @@
+<section *ngIf="isLogin" class="userAuth" id="loginCont">
+  <form id="frmLogin" target="iframe" (submit)="logearUsuario()">
+    <div>
+      <img src="../../assets/img/logo.png" alt="logo">
+      <label class="fontSize30">Iniciar Sesión</label>
+      <input type="text" name="user" id="emailLogin" placeholder="Correo Electronico">
+      <input type="password" name="password" id="passwordLogin" placeholder="Contraseña">
+      <button type="submit" class="primary">Ingresar</button>
+      <button type="button" class="link" id="crearCuenta" (click)="registrarCuenta()">Registrar Cuenta</button>
+    </div>
+  </form>
+</section>
+<section *ngIf="!isLogin" class="userAuth" id="registerCont">
+  <form id="frmRegister" target="iframe" (submit)="crearUsuario()">
+    <div>
+      <img src="../../assets/img/logo.png" alt="logo">          
+      <label class="fontSize30">Registrarse</label>
+      <input type="email" name="user" id="emailRegistro" placeholder="Correo Electronico">
+      <input type="text" name="password" id="passwordRegistro" placeholder="Contraseña">
+      <button type="submit" class="primary">Registrar</button>
+      <button type="button" class="link" id="iniciarSesion" (click)="loginUsuario()">Iniciar Sesión</button>
+    </div>
+  </form>
+</section>
+<iframe name="iframe" class="hidden"></iframe>

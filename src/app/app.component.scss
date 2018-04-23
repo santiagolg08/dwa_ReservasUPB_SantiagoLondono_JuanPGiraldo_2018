@@ -1,0 +1,36 @@
+main.mainCont {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    font-family: 'HeroRegular';
+  }
+
+@font-face {
+    font-family: "HeroRegular";
+    src: url("../fonts/hero-regular/hero-regular.eot");
+    src: url("../fonts/hero-regular/hero-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/hero-regular/hero-regular.woff") format("woff"), url("../fonts/hero-regular/hero-regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+} 
+
+.bodyCont {
+    background-color: #e6e4e4;
+}
+
+.hidden{
+    display: none;
+}
+
+.link{
+    background-color: transparent;
+    border-color: transparent;
+    font-weight: 400;
+    color: #337ab7;
+    border-radius: 0;
+}
+
+.link:hover{
+    color: #23527c;
+    text-decoration: underline;
+    background-color: transparent;
+}
