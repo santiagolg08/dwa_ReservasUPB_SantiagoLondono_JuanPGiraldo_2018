@@ -7,6 +7,7 @@ import { HeaderComponent } from './header/header.component';
 import { AuthComponent } from './auth/auth.component';
 import { InicioComponent } from './inicio/inicio.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { InicioComponent } from './inicio/inicio.component';
     InicioComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule, BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

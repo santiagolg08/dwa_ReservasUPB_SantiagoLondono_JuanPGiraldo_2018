@@ -1,20 +1,20 @@
 <div>
   <div>
-    <img id="c1" class="cuadro1">
+    <img [@bounce]="bounce" id="c1" class="cuadro1">
   </div>
   <div>
-    <img id="c2" class="cuadro2 hidden">
+    <img [@bounce]="bounce" id="c2" class="cuadro2 hidden">
   </div>
   <div>
-    <img id="c3" class="cuadro3 hidden">
+    <img  [@bounce]="bounce" id="c3" class="cuadro3 hidden">
   </div>
   <div>
-    <img id="c4" class="cuadro4 hidden">
+    <img [@bounce]="bounce" id="c4" class="cuadro4 hidden">
   </div>
 </div>
 
-<a class="prev" (click)="plusSlides(-1)">&#10094;</a>
-<a class="next" (click)="plusSlides(1)">&#10095;</a>
+<button class="prev" (click)="plusSlides(-1)">&#10094;</button>
+<button class="next" (click)="plusSlides(1)">&#10095;</button>
 
 <!-- The Modal/Lightbox
 <div id="myModal" class="modal">

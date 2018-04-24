@@ -1,31 +1,41 @@
 import { Component, OnInit } from '@angular/core';
+import { trigger, state, style, animate, transition, useAnimation} from '@angular/animations';
+
+import {bounce} from 'ng-animate';
 
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
-  styleUrls: ['./inicio.component.scss']
+  styleUrls: ['./inicio.component.scss'],
+  animations: [
+    trigger('bounce', [transition('* => *', useAnimation(bounce))]),
+    trigger('itemAnim', [
+      transition(':enter', [
+        style({transform: 'translateX(-100%)'}),
+        animate(350)
+      ]),
+      transition(':leave', [
+            animate('0.2s ease', style({
+            transform: 'translate(150px,25px)'
+          })),
+          animate('0.5s 0.2s ease', style({
+            opacity: 0
+          }))
+        ])
+    ])
+  ]
 })
 export class InicioComponent implements OnInit {
 
+  bounce:any;
   public clase_actual = 1;
+  // public cuadro_actual:HTMLImageElement = "";
 
   constructor() { }
 
   ngOnInit() {
-    // var clases_cuadros = ["cuadro1","cuadro2","cuadro3","cuadro4"] ; 
-    // var clase_actual = 0;
+
   }
-
-  
-
-  // public openModal() {
-  //   document.getElementById('myModal').style.display = "block";
-  // }
-  
-    
-  // var slideIndex = 1;
-  // showSlides(slideIndex);
-  
   // Next/previous controls
   public plusSlides(n) {
     if(n>0){
@@ -37,6 +47,7 @@ export class InicioComponent implements OnInit {
         this.clase_actual = this.clase_actual + 1;
       }
       document.getElementById("c"+this.clase_actual).className = "cuadro" + this.clase_actual;
+      
     }
     if(n<0){
       document.getElementById("c"+this.clase_actual).className = "cuadro" + this.clase_actual + " hidden";
