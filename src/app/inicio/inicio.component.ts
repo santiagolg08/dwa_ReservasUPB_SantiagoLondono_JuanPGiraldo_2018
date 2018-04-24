@@ -7,12 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InicioComponent implements OnInit {
 
-  public clase_actual = 0;
+  public clase_actual = 1;
 
   constructor() { }
 
   ngOnInit() {
-    var clases_cuadros = ["cuadro1","cuadro2","cuadro3","cuadro4"] ; 
+    // var clases_cuadros = ["cuadro1","cuadro2","cuadro3","cuadro4"] ; 
     // var clase_actual = 0;
   }
 
@@ -29,9 +29,24 @@ export class InicioComponent implements OnInit {
   // Next/previous controls
   public plusSlides(n) {
     if(n>0){
-      alert(this.clase_actual);
-     this.clase_actual = 1;
-    alert(this.clase_actual);
+      document.getElementById("c"+this.clase_actual).className = "cuadro" + this.clase_actual + " hidden";
+      if(this.clase_actual == 4){
+        this.clase_actual = 1;
+      }
+      else{
+        this.clase_actual = this.clase_actual + 1;
+      }
+      document.getElementById("c"+this.clase_actual).className = "cuadro" + this.clase_actual;
+    }
+    if(n<0){
+      document.getElementById("c"+this.clase_actual).className = "cuadro" + this.clase_actual + " hidden";
+      if(this.clase_actual == 1){
+        this.clase_actual = 4;
+      }
+      else{
+        this.clase_actual = this.clase_actual - 1;
+      }
+      document.getElementById("c"+this.clase_actual).className = "cuadro" + this.clase_actual;
     }
     
   }
