@@ -8,6 +8,7 @@ import { AuthComponent } from './auth/auth.component';
 import { InicioComponent } from './inicio/inicio.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EscenariosComponent } from './escenarios/escenarios.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HeaderComponent,
     AuthComponent,
     InicioComponent,
+    EscenariosComponent,
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule
