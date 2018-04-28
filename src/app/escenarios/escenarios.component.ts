@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EscenariosComponent implements OnInit {
 
+  title: string = 'My first AGM project';
+  lat: number = 6.242052007104904;
+  lng: number = -75.589807519906;
+
   constructor() { }
 
   ngOnInit() {

@@ -12,6 +12,8 @@ import { EscenariosComponent} from './escenarios/escenarios.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { AgmCoreModule } from '@agm/core';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +26,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule, 
     BrowserAnimationsModule,
     FormsModule,
-    routing
+    routing,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAqOFBg8PQg9YzRh2QaNXur-pF5BDvgfM0'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

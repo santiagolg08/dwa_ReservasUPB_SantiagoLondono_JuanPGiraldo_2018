@@ -1,0 +1,21 @@
+.img_escenarios{
+    width: 35%;
+    height: 320px;
+    margin-left: 10%;
+    margin-top: 10%;
+    background-color: yellow;
+    border: 1px solid;
+    display: inline-block;
+}
+
+.mapa{
+    display: inline-block;
+    width: 35%;
+    margin-left: 5%;
+}
+
+agm-map {
+    width: 100%;
+    height: 300px;
+    display: inline-block;
+  }
