@@ -3,22 +3,27 @@
     <div>
       <img src="../../assets/img/logo.png" alt="logo">
       <label class="fontSize30">Iniciar Sesión</label>
-      <input type="text" name="user" id="emailLogin" placeholder="Correo Electronico">
-      <input type="password" name="password" id="passwordLogin" placeholder="Contraseña">
+      <input type="text" name="user" id="emailLogin" [(ngModel)]="email" required placeholder="Correo Electronico">
+      <input type="password" name="password" id="passwordLogin" [(ngModel)]="password" required placeholder="Contraseña">
       <button type="submit" class="primary">Ingresar</button>
-      <button type="button" class="link" id="crearCuenta" (click)="registrarCuenta()">Registrar Cuenta</button>
+      <button type="button" class="link" id="crearCuenta" (click)="cambiarForm()">Registrar Cuenta</button>
+      <p *ngIf="errorMessage.length > 0" class="text-danger">
+        {{errorMessage}}</p>
+  
+      <p *ngIf="error.message.length > 0" class="text-danger">
+        {{error.message}}</p>
     </div>
   </form>
 </section>
 <section *ngIf="!isLogin" class="userAuth" id="registerCont">
-  <form id="frmRegister" target="iframe" (submit)="crearUsuario()">
+  <form id="frmRegister" target="iframe" (submit)="onSignUp()">
     <div>
       <img src="../../assets/img/logo.png" alt="logo">          
       <label class="fontSize30">Registrarse</label>
-      <input type="email" name="user" id="emailRegistro" placeholder="Correo Electronico">
-      <input type="text" name="password" id="passwordRegistro" placeholder="Contraseña">
+      <input type="email" name="user" id="emailRegistro" [(ngModel)]="email" required placeholder="Correo Electronico">
+      <input type="text" name="password" id="passwordRegistro" [(ngModel)]="password" required placeholder="Contraseña">
       <button type="submit" class="primary">Registrar</button>
-      <button type="button" class="link" id="iniciarSesion" (click)="loginUsuario()">Iniciar Sesión</button>
+      <button type="button" class="link" id="iniciarSesion" (click)="cambiarForm()">Iniciar Sesión</button>
     </div>
   </form>
 </section>
