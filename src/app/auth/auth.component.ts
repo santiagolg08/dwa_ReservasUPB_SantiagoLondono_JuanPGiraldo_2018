@@ -13,7 +13,7 @@ export class AuthComponent implements OnInit {
   password = '';
   errorMessage = '';
   error: { name: string, message: string } = { name: '', message: '' };
-  public isLogin: boolean;
+  public isLogin = true;
 
   constructor(public authService: AuthService, private router: Router) {
   }
@@ -24,9 +24,10 @@ export class AuthComponent implements OnInit {
     if (this.validateForm(this.email, this.password)) {
       this.authService.signUpWithEmail(this.email, this.password)
         .then(() => {
-          alert("Registro exitoso");
+          this.sendEmailVerification();
+          this.cambiarForm();
         }).catch(_error => {
-          alert("Registro fallido");          
+          alert("Registro fallido");
           this.error = _error;
         })
     }
@@ -35,14 +36,34 @@ export class AuthComponent implements OnInit {
   onLoginEmail(): void {
     if (this.validateForm(this.email, this.password)) {
       this.authService.loginWithEmail(this.email, this.password)
-        .then(() =>{
-          alert("Ingreso exitoso");          
+        .then(() => {
+          this.validateVerificationEmail();
         })
         .catch(_error => {
-          alert("Ingreso fallido");          
+          alert("Ingreso fallido");
           this.error = _error;
         })
     }
+  }
+
+  sendEmailVerification(): void {
+    this.authService.sendVerificationEmail()
+      .then(() => {
+        alert("Correo de verificacion enviado");
+      })
+      .catch(_error => {
+        alert("Error al enviar el correo de verificación");
+        this.error = _error;
+      })
+  }
+
+  validateVerificationEmail():void{
+      if(this.authService.currentUserEmailVerified){
+        alert("Usuario Ingresado:" + this.authService.currentUserName);
+      }else{
+        alert("Este correo no ha sido verificado");        
+        this.authService.signOut();
+      }
   }
 
   validateForm(email: string, password: string): boolean {
@@ -56,11 +77,6 @@ export class AuthComponent implements OnInit {
       return false;
     }
 
-    if (password.length < 6) {
-      this.errorMessage = 'La contraseña debe contener al menos 6 caracteres !';
-      return false;
-    }
-
     this.errorMessage = '';
 
     return true;
@@ -68,6 +84,7 @@ export class AuthComponent implements OnInit {
 
   public cambiarForm() {
     this.isLogin = !this.isLogin;
+    this.errorMessage = '';
   }
 
 }

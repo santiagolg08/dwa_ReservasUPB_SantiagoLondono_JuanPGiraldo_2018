@@ -25,6 +25,10 @@ export class AuthService {
     return this.authState['email']
   }
 
+  get currentUserEmailVerified(): boolean{
+    return this.authState['emailVerified']
+  }
+
   get currentUser(): any {
     return (this.authState !== null) ? this.authState : null;
   }
@@ -59,8 +63,17 @@ export class AuthService {
       });
   }
 
+  sendVerificationEmail(){
+    return this.afAuth.auth.currentUser.sendEmailVerification().then((user) =>{
+        return true;
+    }).catch(error =>{
+        console.log(error)
+        return false;
+    });
+  }
+
   signOut(): void {
     this.afAuth.auth.signOut();
-    this.router.navigate(['/'])
+    this.router.navigate(['/auth'])
   }
 }

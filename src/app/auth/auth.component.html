@@ -1,12 +1,12 @@
 <section *ngIf="isLogin" class="userAuth" id="loginCont">
-  <form id="frmLogin" target="iframe" (submit)="logearUsuario()">
+  <form id="frmLogin" target="iframe" (submit)="onLoginEmail()">
     <div>
       <img src="../../assets/img/logo.png" alt="logo">
       <label class="fontSize30">Iniciar Sesión</label>
       <input type="text" name="user" id="emailLogin" [(ngModel)]="email" required placeholder="Correo Electronico">
       <input type="password" name="password" id="passwordLogin" [(ngModel)]="password" required placeholder="Contraseña">
       <button type="submit" class="primary">Ingresar</button>
-      <button type="button" class="link" id="crearCuenta" (click)="cambiarForm()">Registrar Cuenta</button>
+      <span type="button" class="link" id="crearCuenta" (click)="cambiarForm()">Registrar Cuenta</span>
       <p *ngIf="errorMessage.length > 0" class="text-danger">
         {{errorMessage}}</p>
   
@@ -23,7 +23,12 @@
       <input type="email" name="user" id="emailRegistro" [(ngModel)]="email" required placeholder="Correo Electronico">
       <input type="text" name="password" id="passwordRegistro" [(ngModel)]="password" required placeholder="Contraseña">
       <button type="submit" class="primary">Registrar</button>
-      <button type="button" class="link" id="iniciarSesion" (click)="cambiarForm()">Iniciar Sesión</button>
+      <span type="button" class="link" id="iniciarSesion" (click)="cambiarForm()">Iniciar Sesión</span>
+      <p *ngIf="errorMessage.length > 0" class="text-danger">
+        {{errorMessage}}</p>
+  
+      <p *ngIf="error.message.length > 0" class="text-danger">
+        {{error.message}}</p>
     </div>
   </form>
 </section>
