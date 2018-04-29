@@ -18,12 +18,14 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 import {AuthService} from './services/auth.service';
+import { DeportesComponent } from './deportes/deportes.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     AuthComponent,
+    DeportesComponent,
   ],
   imports: [
     BrowserModule,
