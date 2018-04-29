@@ -1,13 +1,17 @@
-.img_escenarios{
+.futbol_escenario{
+    display: inline-block;
     width: 35%;
     height: 320px;
-    margin-left: 10%;
-    margin-top: 10%;
+    margin-left: 5%;
+    margin-top: 8%;
     background-color: yellow;
     border: 1px solid;
-    display: inline-block;
 }
 
+.btn_cambio{
+    width: 100%;
+    display: block;
+}
 .mapa{
     display: inline-block;
     width: 35%;

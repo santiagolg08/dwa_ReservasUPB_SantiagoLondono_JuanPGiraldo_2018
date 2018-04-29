@@ -1,12 +1,18 @@
-<button (click)="cambiarEscenario()">boton</button>
-<div class="img_escenarios">
+<div class="btn_cambio">
+  <button class="" (click)="cambiarEscenario()">boton</button>
+</div>
+<div class="futbol_escenario">
 
+</div>
+
+<div class="tenis_escenario hidden">
+  
 </div>
 <div class="mapa">
   <!-- <h1>{{ title }}</h1> -->
   <!-- this creates a google map on the page with the given lat/lng from -->
   <!-- the component as the initial center of the map: -->
   <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
-    <agm-marker [latitude]="lat_marker" [longitude]="lng_marker"></agm-marker>
+    <agm-marker [latitude]="markers[0].lat" [longitude]="markers[0].lng"></agm-marker>
   </agm-map>
 </div>
