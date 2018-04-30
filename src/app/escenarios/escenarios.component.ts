@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EscenariosComponent implements OnInit {
 
-  clase_activa:string = "futbol_escenario";
+	clase_activa:string = "futbol_escenario";
+	
+	escenarios : Array<string>;
 
-  title: string = 'My first AGM project';
+  // title: string = 'My first AGM project';
   lat: number = 6.242052007104904;
   lng: number = -75.589807519906;
   zoom:number = 17;
@@ -20,27 +22,36 @@ export class EscenariosComponent implements OnInit {
 
 
   markers: marker[] = [
+	  {	nombre_escenario:"cancha_fundadores",
+		  lat: 6.242052007104904,
+      lng: -75.589807519906,
+		},
 	  {
-		  lat: 6.242147994160795,
-      lng: -75.59137929438873,
-		  label: 'A',
-		  draggable: true
+			nombre_escenario:"cancha_bloque19",
+			lat: 6.241788699429994,
+		  lng: -75.58904748395435,
 	  },
 	  {
-		  lat: 51.373858,
-		  lng: 7.215982,
-		  label: 'B',
-		  draggable: false
-	  },
-	  {
-		  lat: 51.723858,
-		  lng: 7.895982,
-		  label: 'C',
-		  draggable: true
-	  }
+			nombre_escenario:"polideportivo",
+			lat: 6.241761590222094,
+		  lng: -75.59048652648926,
+		 },
+		 {
+			nombre_escenario:"cancha_tenis",
+			lat: 6.241740705871343,
+		  lng: -75.5888496710395,
+		 }
   ]
 
-  constructor() { }
+  constructor() { 
+		this.escenarios = [ 
+			"Polideportivo",
+			"Cancha de fútbol Fundadores", 
+			"Cancha de fútbol Bloque 19",
+			"Canchas de tenis",
+			"Placas"
+		]
+	}
 
   ngOnInit() {
   }
@@ -51,8 +62,7 @@ export class EscenariosComponent implements OnInit {
 }
 
 interface marker {
+	nombre_escenario:string;
 	lat: number;
 	lng: number;
-	label?: string;
-	draggable: boolean;
 }
