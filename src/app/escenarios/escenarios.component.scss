@@ -3,9 +3,10 @@
     width: 35%;
     height: 320px;
     margin-left: 10%;
-    margin-top: 8%;
+    margin-top: 5%;
     background-color: yellow;
     border: 1px solid;
+    vertical-align: top;
 }
 
 .polideportivo{
@@ -13,9 +14,10 @@
     width: 35%;
     height: 320px;
     margin-left: 10%;
-    margin-top: 8%;
+    margin-top: 5%;
     background-color: black;
     border: 1px solid;
+    vertical-align: top;
 }
 
 .cancha_bloque19{
@@ -23,29 +25,38 @@
     width: 35%;
     height: 320px;
     margin-left: 10%;
-    margin-top: 8%;
+    margin-top: 5%;
     background-color: red;
     border: 1px solid;
+    vertical-align: top;
 }
 
-.tenis_escenario{
+.cancha_tenis{
     display: inline-block;
     width: 35%;
     height: 320px;
     margin-left: 10%;
-    margin-top: 8%;
+    margin-top: 5%;
     background-color: blue;
     border: 1px solid;
+    vertical-align: top;
 }
 
-.btn_cambio{
-    width: 100%;
+.select_escenarios{
+    width: 20%;
+    margin: 5% 0% 0% 75%;
+    border: solid 1px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-family: Tahoma; 
     display: block;
 }
+
 .mapa{
     display: inline-block;
     width: 35%;
     margin-left: 5%;
+    margin-top:5%;
 }
 
 agm-map {

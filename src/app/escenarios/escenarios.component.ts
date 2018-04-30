@@ -11,6 +11,7 @@ export class EscenariosComponent implements OnInit {
   lng: number = -75.589807519906;
 	zoom:number = 17;
 	
+	escenario_index:number = 0;
 	// select_escenarios:any;
   
   // lat_marker: number = 6.242147994160795;
@@ -20,8 +21,8 @@ export class EscenariosComponent implements OnInit {
 
   markers: marker[] = [
 	  {	nombre_escenario:"cancha_fundadores",
-		  lat: 6.242052007104904,
-			lng: -75.589807519906,
+		  lat: 6.242182866847922,
+			lng: -75.59138774871826,
 			src_img : "../../assets/img/sprites/sprite_1/medal.png",
 		},
 	  {
@@ -62,9 +63,8 @@ export class EscenariosComponent implements OnInit {
     console.log("cambiando marker");
 	}
 	
-	onChange(cityindex) {
-    console.log(cityindex);
-    alert(cityindex);
+	onChange(escenario_index) {
+    this.escenario_index = escenario_index;
   }
 }
 
