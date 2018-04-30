@@ -8,7 +8,7 @@ import { EscenariosComponent} from './escenarios/escenarios.component';
 
 
 const appRoutes: Routes = [
-    { path:'', component:HeaderComponent },
+    { path:'', component:InicioComponent },
     { path:'inicio', component:InicioComponent },
     { path:'auth', component:AuthComponent },
     { path: 'header', component:HeaderComponent},
