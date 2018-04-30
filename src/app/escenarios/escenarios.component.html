@@ -1,25 +1,31 @@
 <!-- <div class="btn_cambio">
   <input type="checkbox" class="" (click)="cambiarEscenario()">boton</button>
 </div> -->
-<select class="btn_cambio">
+<!-- <select class="btn_cambio" id="escenario_seleccionado" onChange="actualizarEscenario()">
   <option value="cancha_fundadores">Cancha Fundadores</option>
-  <option value="polideportivo">Cancha de Tenis</option>
-  <option value="cancha_bloque19">Cancha de Tenis</option>
+  <option value="polideportivo">Polideportivo</option>
+  <option value="cancha_bloque19">Cancha de fútbol Bloque 19</option>
   <option value="cancha_tenis">Cancha de Tenis</option>
+</select> -->
+
+<!-- <ion-select [(ngModel)]="select_escenarios">
+  <ion-option *ngFor="let esc of markers; let i = index" (ngModelChange)="onChange(i)">
+      {{markers.nombre_escenario}}
+  </ion-option>
+</ion-select> -->
+
+<select (change)="onChange($event.target.value)" >
+  <option *ngFor="let c of markers;let i = index" [value]="i"> {{c.nombre_escenario}} </option>
 </select>
 
-<div class="cancha_fundadores">
+<div class="btn_cambio">
+  <button class="" (click)="cambiarImg()">boton</button>
+</div>
 
+<div [ngClass]="markers[0].nombre_escenario">
+  <img id="img_escenario" src = "{{markers[0].src_img}}">
 </div>
-<div class="polideportivo hidden">
-  
-</div>
-<div class="cancha_bloque19 hidden">
-  
-</div>
-<div class="tenis_escenario hidden">
-  
-</div>
+
 <div class="mapa">
   <!-- <h1>{{ title }}</h1> -->
   <!-- this creates a google map on the page with the given lat/lng from -->

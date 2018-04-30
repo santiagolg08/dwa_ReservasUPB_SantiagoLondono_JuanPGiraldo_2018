@@ -7,14 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EscenariosComponent implements OnInit {
 
-	clase_activa:string = "futbol_escenario";
-	
-	escenarios : Array<string>;
-
-  // title: string = 'My first AGM project';
-  lat: number = 6.242052007104904;
+	lat: number = 6.242052007104904;
   lng: number = -75.589807519906;
-  zoom:number = 17;
+	zoom:number = 17;
+	
+	// select_escenarios:any;
   
   // lat_marker: number = 6.242147994160795;
   // lng_marker: number = -75.59137929438873;
@@ -24,40 +21,50 @@ export class EscenariosComponent implements OnInit {
   markers: marker[] = [
 	  {	nombre_escenario:"cancha_fundadores",
 		  lat: 6.242052007104904,
-      lng: -75.589807519906,
+			lng: -75.589807519906,
+			src_img : "../../assets/img/sprites/sprite_1/medal.png",
 		},
 	  {
 			nombre_escenario:"cancha_bloque19",
 			lat: 6.241788699429994,
-		  lng: -75.58904748395435,
+			lng: -75.58904748395435,
+			src_img : "../../assets/img/sprites/sprite_1/menu.png",
 	  },
 	  {
 			nombre_escenario:"polideportivo",
 			lat: 6.241761590222094,
-		  lng: -75.59048652648926,
+			lng: -75.59048652648926,
+			src_img : "../../assets/img/sprites/sprite_1/profile.png",
 		 },
 		 {
 			nombre_escenario:"cancha_tenis",
 			lat: 6.241740705871343,
-		  lng: -75.5888496710395,
+			lng: -75.5888496710395,
+			src_img : "../../assets/img/sprites/sprite_1/favicon.png",
 		 }
   ]
 
   constructor() { 
-		this.escenarios = [ 
-			"Polideportivo",
-			"Cancha de fútbol Fundadores", 
-			"Cancha de fútbol Bloque 19",
-			"Canchas de tenis",
-			"Placas"
-		]
+		
 	}
 
   ngOnInit() {
+		
   }
+	
+	actualizarEscenario(){
+		var esc = document.getElementById("escenario_seleccionado");
+		var esccc = esc.nodeValue;
+		console.log(esccc);
+	}
 
   cambiarEscenario(){
     console.log("cambiando marker");
+	}
+	
+	onChange(cityindex) {
+    console.log(cityindex);
+    alert(cityindex);
   }
 }
 
@@ -65,4 +72,5 @@ interface marker {
 	nombre_escenario:string;
 	lat: number;
 	lng: number;
+	src_img:string;
 }
