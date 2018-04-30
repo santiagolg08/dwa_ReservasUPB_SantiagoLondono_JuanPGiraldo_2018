@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -9,85 +9,82 @@ import * as firebase from 'firebase/app';
 })
 export class AuthComponent implements OnInit {
 
-  public config:Object;
-  public usuario:Object; 
-  public isLogin: boolean; 
+  email = '';
+  password = '';
+  errorMessage = '';
+  error: { name: string, message: string } = { name: '', message: '' };
+  public isLogin = true;
 
-  constructor() {
-    this.config = {
-      apiKey: "AIzaSyAki17Jt5KtqZD0qVRTe3E4-SYrq8IUOEA",
-      authDomain: "reservasupb.firebaseapp.com",
-      databaseURL: "https://reservasupb.firebaseio.com",
-      projectId: "reservasupb",
-      storageBucket: "reservasupb.appspot.com",
-      messagingSenderId: "608631006074"
-    };
-    this.isLogin = true;
-   }
+  constructor(public authService: AuthService, private router: Router) {
+  }
   ngOnInit() {
-    if (!firebase.apps.length) {
-      firebase.initializeApp(this.config);
+  }
+
+  onSignUp(): void {
+    if (this.validateForm(this.email, this.password)) {
+      this.authService.signUpWithEmail(this.email, this.password)
+        .then(() => {
+          this.sendEmailVerification();
+          this.cambiarForm();
+        }).catch(_error => {
+          alert("Registro fallido");
+          this.error = _error;
+        })
     }
   }
 
+  onLoginEmail(): void {
+    if (this.validateForm(this.email, this.password)) {
+      this.authService.loginWithEmail(this.email, this.password)
+        .then(() => {
+          this.validateVerificationEmail();
+        })
+        .catch(_error => {
+          alert("Ingreso fallido");
+          this.error = _error;
+        })
+    }
+  }
 
-public logearUsuario() {
-  let inputEmail = <HTMLInputElement>document.getElementById("emailLogin");
-  let inputPassword = <HTMLInputElement>document.getElementById("passwordLogin");
-  if (inputEmail.value != "" && inputPassword.value != "") {
-    firebase.auth().signInWithEmailAndPassword(inputEmail.value, inputPassword.value).then(function (user) {
-      if (user.emailVerified) {
-        this.usuario = user;
-        alert("Usuario ingresado: " + user.email);
-        this.formLogin.reset();
-      } else {
-        firebase.auth().signOut().then(function () {
-          alert("Correo electronico no verificado");
-        }).catch(function (error) {
-          // An error happened.
-        });
+  sendEmailVerification(): void {
+    this.authService.sendVerificationEmail()
+      .then(() => {
+        alert("Correo de verificacion enviado");
+      })
+      .catch(_error => {
+        alert("Error al enviar el correo de verificación");
+        this.error = _error;
+      })
+  }
+
+  validateVerificationEmail():void{
+      if(this.authService.currentUserEmailVerified){
+        alert("Usuario Ingresado:" + this.authService.currentUserName);
+      }else{
+        alert("Este correo no ha sido verificado");        
+        this.authService.signOut();
       }
-    }, function (error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      alert(errorMessage);
-      // ...
-    });
   }
-  return false;
-}
 
-public crearUsuario() {
-  let inputEmail = <HTMLInputElement>document.getElementById("emailRegistro");
-  let inputPassword = <HTMLInputElement>document.getElementById("passwordRegistro");
-  if (inputEmail.value != "" && inputPassword.value != "") {
-    firebase.auth().createUserWithEmailAndPassword(inputEmail.value, inputPassword.value).then(function (user) {
-      user.sendEmailVerification().then(function () {
-        alert("Correo de verificación enviado");
-        this.loginUsuario();
-      }).catch(function (error) {
-        // An error happened.
-        alert("No se envió el correo de verificación");
-      });
-    }, function (error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      alert(errorMessage);
-      // ...
-    });
+  validateForm(email: string, password: string): boolean {
+    if (email.length === 0) {
+      this.errorMessage = 'Por favor ingrese su Email!';
+      return false;
+    }
+
+    if (password.length === 0) {
+      this.errorMessage = 'Por favor ingrese su contraseña';
+      return false;
+    }
+
+    this.errorMessage = '';
+
+    return true;
   }
-  return false;
-}
 
-public registrarCuenta() {
-  this.isLogin = false;
-}
-
-public loginUsuario() {
-  this.isLogin = true;
-}
-
+  public cambiarForm() {
+    this.isLogin = !this.isLogin;
+    this.errorMessage = '';
+  }
 
 }
