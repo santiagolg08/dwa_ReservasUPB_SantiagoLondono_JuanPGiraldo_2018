@@ -1,43 +1,10 @@
-.cancha_fundadores{
-    display: inline-block;
-    width: 35%;
-    height: 320px;
-    margin-left: 10%;
-    margin-top: 5%;
-    background-color: yellow;
-    border: 1px solid;
-    vertical-align: top;
-}
-
-.polideportivo{
+.escenario{
     display: inline-block;
     width: 35%;
     height: 320px;
     margin-left: 10%;
     margin-top: 5%;
     background-color: black;
-    border: 1px solid;
-    vertical-align: top;
-}
-
-.cancha_bloque19{
-    display: inline-block;
-    width: 35%;
-    height: 320px;
-    margin-left: 10%;
-    margin-top: 5%;
-    background-color: red;
-    border: 1px solid;
-    vertical-align: top;
-}
-
-.cancha_tenis{
-    display: inline-block;
-    width: 35%;
-    height: 320px;
-    margin-left: 10%;
-    margin-top: 5%;
-    background-color: blue;
     border: 1px solid;
     vertical-align: top;
 }
@@ -65,6 +32,6 @@ agm-map {
     display: inline-block;
   }
 
-  .hidden{
-      display: none;
-  }
+.hidden{
+    display: none; 
+}
