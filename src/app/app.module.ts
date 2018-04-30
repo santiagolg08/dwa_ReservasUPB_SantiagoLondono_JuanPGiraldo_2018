@@ -44,7 +44,7 @@ import { AgmCoreModule } from '@agm/core';
       [
         { path: "", component: AuthComponent}
       ]
-    )
+    ),
     
     routing,
     AgmCoreModule.forRoot({
