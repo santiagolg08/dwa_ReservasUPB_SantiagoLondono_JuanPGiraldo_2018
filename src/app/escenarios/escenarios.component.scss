@@ -35,3 +35,26 @@ agm-map {
 .hidden{
     display: none; 
 }
+
+@media screen and (max-width:630px){
+    .escenario{
+        display: block;
+        width: 90%;
+        height: 220px;;
+        margin-left: 5%;
+    }
+    
+    .select_escenarios{
+        width: 50%;
+        margin: 5% 0% 0% 45%;
+        ;
+    }
+    
+    .mapa{
+        display: block;
+        width: 90%;
+        height: 220px;
+    }
+    
+    
+}
