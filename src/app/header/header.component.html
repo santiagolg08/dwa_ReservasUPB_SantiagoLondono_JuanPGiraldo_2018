@@ -6,9 +6,9 @@
   <div class="menu">
     <a class="element_menu" id="btsec_inicio">Inicio</a>
     <a class="element_menu" id="btsec_espacios">Escenarios</a>
-    <div class="itemMenu">
-      <a class="element_menu" id="btsec_deportes">Deportes</a>
-      <div id="subMenu" class="dropdown-content" hidden>
+    <div class="dropdown">
+      <a class="element_menu" id="btsec_deportes" (click)="subMenuDeportes()">Deportes</a>
+      <div class="dropdown-content" id="myDropdown">
         <a href="#">Link 1</a>
         <a href="#">Link 2</a>
         <a href="#">Link 3</a>

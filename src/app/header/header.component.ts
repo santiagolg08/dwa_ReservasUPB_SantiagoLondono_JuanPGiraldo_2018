@@ -10,6 +10,12 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  
+  }
+
+
+  public subMenuDeportes() {
+    document.getElementById("myDropdown").classList.toggle("show");
   }
 
 }
