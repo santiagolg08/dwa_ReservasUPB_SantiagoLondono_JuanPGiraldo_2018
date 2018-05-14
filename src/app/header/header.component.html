@@ -1,11 +1,11 @@
-<header class="headerCont">
+﻿<header class="headerCont">
   <img class="imgMenu" src="../../assets/img/sprites/sprite_1/menu.png">
   <img class="imgMedal" src="../../assets/img/sprites/sprite_1/medal.png">
   <div class="titulo">ReservasUPB</div>
 
   <div class="menu">
-    <a class="element_menu" id="btsec_inicio">Inicio</a>
-    <a class="element_menu" id="btsec_espacios">Escenarios</a>
+    <a class="element_menu" id="btsec_inicio" (click) = "irAInicio()">Inicio</a>
+    <a class="element_menu" id="btsec_espacios" (click) = "irAEscenarios()">Escenarios</a>
     <div class="dropdown">
       <a class="element_menu" id="btsec_deportes" (click)="subMenuDeportes()">Deportes</a>
       <div class="dropdown-content" id="myDropdown">

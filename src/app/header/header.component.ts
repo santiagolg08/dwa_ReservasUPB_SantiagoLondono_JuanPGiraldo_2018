@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor( 
+    private _route: ActivatedRoute,
+    private _router: Router
+  ){}
 
   ngOnInit() {
   
@@ -18,4 +22,11 @@ export class HeaderComponent implements OnInit {
     document.getElementById("myDropdown").classList.toggle("show");
   }
 
+  irAInicio() {
+    this._router.navigate(['/inicio']);
+  }
+  
+  irAEscenarios() {
+    this._router.navigate(['/escenarios']);
+  }
 }

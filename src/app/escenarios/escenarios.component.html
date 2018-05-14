@@ -1,0 +1,15 @@
+<select class="select_escenarios" (change)="onChange($event.target.value)" >
+  <option *ngFor="let c of markers;let i = index" [value]="i"> {{c.nombre_escenario}} </option>
+</select>
+
+<div class="escenario">
+  <img id="img_escenario" src = "{{markers[escenario_index].src_img}}">
+</div>
+
+<div class="mapa">
+  <!-- this creates a google map on the page with the given lat/lng from -->
+  <!-- the component as the initial center of the map: -->
+  <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+    <agm-marker [latitude]="markers[escenario_index].lat" [longitude]="markers[escenario_index].lng"></agm-marker>
+  </agm-map>
+</div>

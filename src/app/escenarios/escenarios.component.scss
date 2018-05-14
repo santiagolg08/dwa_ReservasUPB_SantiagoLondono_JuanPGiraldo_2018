@@ -1,0 +1,60 @@
+.escenario{
+    display: inline-block;
+    width: 35%;
+    height: 320px;
+    margin-left: 10%;
+    margin-top: 5%;
+    background-color: black;
+    border: 1px solid;
+    vertical-align: top;
+}
+
+.select_escenarios{
+    width: 20%;
+    margin: 5% 0% 0% 75%;
+    border: solid 1px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-family: Tahoma; 
+    display: block;
+}
+
+.mapa{
+    display: inline-block;
+    width: 35%;
+    margin-left: 5%;
+    margin-top:5%;
+}
+
+agm-map {
+    width: 100%;
+    height: 320px;
+    display: inline-block;
+  }
+
+.hidden{
+    display: none; 
+}
+
+@media screen and (max-width:630px){
+    .escenario{
+        display: block;
+        width: 90%;
+        height: 220px;;
+        margin-left: 5%;
+    }
+    
+    .select_escenarios{
+        width: 50%;
+        margin: 5% 0% 0% 45%;
+        ;
+    }
+    
+    .mapa{
+        display: block;
+        width: 90%;
+        height: 220px;
+    }
+    
+    
+}
