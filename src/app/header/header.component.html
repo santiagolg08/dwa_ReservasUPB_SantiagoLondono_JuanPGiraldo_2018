@@ -4,14 +4,12 @@
   <div class="titulo">ReservasUPB</div>
 
   <div class="menu">
-    <a class="element_menu" id="btsec_inicio" (click) = "irAInicio()">Inicio</a>
-    <a class="element_menu" id="btsec_espacios" (click) = "irAEscenarios()">Escenarios</a>
+    <a class="element_menu" id="btsec_inicio" (click)="irAInicio()">Inicio</a>
+    <a class="element_menu" id="btsec_espacios" (click)="irAEscenarios()">Escenarios</a>
     <div class="dropdown">
       <a class="element_menu" id="btsec_deportes" (click)="subMenuDeportes()">Deportes</a>
-      <div class="dropdown-content" id="myDropdown">
-        <a href="#">Link 1</a>
-        <a href="#">Link 2</a>
-        <a href="#">Link 3</a>
+      <div *ngIf="deportes != null" class="dropdown-content" id="myDropdown">
+        <a *ngFor="let item of deportes;" (click)="irADeportes(item.key)">{{item.key}}</a>
       </div>
     </div>
     <a class="element_menu" id="btsec_contacto">Contacto</a>

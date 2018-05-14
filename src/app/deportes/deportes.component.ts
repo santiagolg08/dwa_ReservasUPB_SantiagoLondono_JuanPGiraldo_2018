@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-deportes',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeportesComponent implements OnInit {
 
-  constructor() { }
+  public deporte: string;
+
+  constructor(
+    private _route: ActivatedRoute,
+    private _router: Router
+  ) {}
 
   ngOnInit() {
+    this._route.params.forEach((params:Params) => {
+      this.deporte = params['ident'];
+      console.log(params);
+    });
   }
 
 }
