@@ -43,6 +43,7 @@ export class HeaderComponent implements OnInit {
 
   irADeportes(key){
     this._router.navigate(["/deportes/"+key]);
+    this.subMenuDeportes();
   }
 }
 

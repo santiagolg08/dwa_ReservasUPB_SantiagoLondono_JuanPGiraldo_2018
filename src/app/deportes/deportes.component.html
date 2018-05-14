@@ -1,3 +1,29 @@
-<p>
-  {{deporte}}
+<p class="titulo">
+  {{param}}
 </p>
+<div class="contDeporte">
+  <div class="imgDeporte">
+    <img src="../../assets/img/deportes/{{param}}.png">
+  </div>
+  <div class="tabla">
+    <table id="horarios">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Lunes</th>
+          <th>Martes</th>
+          <th>Miércoles</th>
+          <th>Jueves</th>
+          <th>Viernes</th>
+          <th>Sábado</th>
+          <th>Domingo</th>          
+        </tr>
+      </thead>
+      <tbody *ngIf="deporte != null">
+        <tr>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
