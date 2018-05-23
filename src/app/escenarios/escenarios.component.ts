@@ -12,13 +12,12 @@ export class EscenariosComponent implements OnInit {
 	zoom:number = 17;
 	
 	escenario_index:number = 0;
-	lista_src_espacios:Array<string>;
 
   markers: marker[] = [
 	  {	nombre_escenario:"Cancha Fundadores",
 		  lat: 6.242182866847922,
 			lng: -75.59138774871826,
-			src_img : "../../assets/img/sprites/sprite_1/medal.png",
+			src_img : "../../assets/img/fotos_escenarios/escenario_cancha_bloque19_1.JPG",
 		},
 	  {
 			nombre_escenario:"Cancha Bloque19",
