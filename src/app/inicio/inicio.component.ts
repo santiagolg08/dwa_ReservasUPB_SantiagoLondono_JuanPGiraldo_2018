@@ -75,10 +75,8 @@ export class InicioComponent implements OnInit {
         this.pos_actual = this.pos_actual - 1;
       }
     }
-  
 
   volverOpacity(){
-    // alert("volvi");
     document.getElementById("cuadro_inicio").style.opacity = "1";
   } 
   
