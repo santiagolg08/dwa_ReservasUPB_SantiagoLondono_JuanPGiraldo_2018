@@ -28,10 +28,17 @@ import {bounce} from 'ng-animate';
 export class InicioComponent implements OnInit {
 
   bounce:any;
-  public clase_actual = 1;
-  // public cuadro_actual:HTMLImageElement = "";
+  public pos_actual = 0;
+  public lista_src_escenarios: Array<string>;
 
-  constructor() { }
+  constructor() { 
+    this.lista_src_escenarios=[
+      "../../assets/img/fotos_escenarios/escenario_fundadores_1.JPG",
+      "../../assets/img/fotos_escenarios/escenario_fundadores_2.JPG",
+      "../../assets/img/fotos_escenarios/escenario_fundadores_3.JPG",
+      "../../assets/img/fotos_escenarios/escenario_fundadores_4.JPG"
+    ]
+  }
 
   ngOnInit() {
 
@@ -39,25 +46,21 @@ export class InicioComponent implements OnInit {
   // Next/previous controls
   public plusSlides(n) {
     if(n>0){
-      document.getElementById("c"+this.clase_actual).className = "cuadro" + this.clase_actual + " hidden";
-      if(this.clase_actual == 4){
-        this.clase_actual = 1;
+      if(this.pos_actual == this.lista_src_escenarios.length -1){
+        this.pos_actual = 0;
       }
       else{
-        this.clase_actual = this.clase_actual + 1;
+        this.pos_actual = this.pos_actual + 1;
       }
-      document.getElementById("c"+this.clase_actual).className = "cuadro" + this.clase_actual;
-      
     }
+
     if(n<0){
-      document.getElementById("c"+this.clase_actual).className = "cuadro" + this.clase_actual + " hidden";
-      if(this.clase_actual == 1){
-        this.clase_actual = 4;
+      if(this.pos_actual == 0){
+        this.pos_actual = this.lista_src_escenarios.length -1;
       }
       else{
-        this.clase_actual = this.clase_actual - 1;
+        this.pos_actual = this.pos_actual - 1;
       }
-      document.getElementById("c"+this.clase_actual).className = "cuadro" + this.clase_actual;
     }
     
   }
