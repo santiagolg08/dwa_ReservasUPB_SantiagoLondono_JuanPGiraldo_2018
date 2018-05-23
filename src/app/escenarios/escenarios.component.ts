@@ -12,6 +12,7 @@ export class EscenariosComponent implements OnInit {
 	zoom:number = 17;
 	
 	escenario_index:number = 0;
+	lista_src_espacios:Array<string>;
 
   markers: marker[] = [
 	  {	nombre_escenario:"Cancha Fundadores",
