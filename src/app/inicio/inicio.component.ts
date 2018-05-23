@@ -45,48 +45,41 @@ export class InicioComponent implements OnInit {
   }
   // Next/previous controls
   public plusSlides(n) {
-    if(n>0){
-      if(this.pos_actual == this.lista_src_escenarios.length -1){
-        this.pos_actual = 0;
+    document.getElementById("cuadro_inicio").style.opacity = "0.2";
+    setTimeout(() => {
+      this.volverOpacity();
+      if(n>0){
+        this.sumarPos();
       }
+      if(n<0){
+        this.restarPos();
+      }
+    }, 1500);
+  }
+
+  sumarPos(){
+    if(this.pos_actual == this.lista_src_escenarios.length -1){
+      this.pos_actual = 0;
+    }
       else{
         this.pos_actual = this.pos_actual + 1;
       }
-    }
+     
+  }
 
-    if(n<0){
-      if(this.pos_actual == 0){
+  restarPos(){
+    if(this.pos_actual == 0){
         this.pos_actual = this.lista_src_escenarios.length -1;
       }
       else{
         this.pos_actual = this.pos_actual - 1;
       }
     }
-    
-  }
   
-  // Thumbnail image controls
-  public currentSlide(n) {
-    // showSlides(slideIndex = n);
-    alert("mlkdmlefm");
-  }
-  
-  // public showSlides(n) {
-  //   var i;
-  //   var slides = document.getElementsByClassName("mySlides");
-  //   var dots = document.getElementsByClassName("demo");
-  //   var captionText = document.getElementById("caption");
-  //   if (n > slides.length) {slideIndex = 1}
-  //   if (n < 1) {slideIndex = slides.length}
-  //   for (i = 0; i < slides.length; i++) {
-  //     slides[i].style.display = "none";
-  //   }
-  //   for (i = 0; i < dots.length; i++) {
-  //     dots[i].className = dots[i].className.replace(" active", "");
-  //   }
-  //   slides[slideIndex-1].style.display = "block";
-  //   dots[slideIndex-1].className += " active";
-  //   captionText.innerHTML = dots[slideIndex-1].alt; 
-  // }
 
+  volverOpacity(){
+    // alert("volvi");
+    document.getElementById("cuadro_inicio").style.opacity = "1";
+  } 
+  
 }

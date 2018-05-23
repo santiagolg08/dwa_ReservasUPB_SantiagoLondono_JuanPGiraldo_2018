@@ -1,11 +1,10 @@
-.cuadro_inicio{
-    background-color: red;
-    width: 50%;
-    height: 440px;
-    margin-top: 5%;
-    margin-left: 25%; 
+#cuadro_inicio{
+  width: 90%;
+  height: 460px;
+  margin-left: 5%;
+  transition: 2s;
 }
-  
+
 .hidden{
   display: none;
 }
