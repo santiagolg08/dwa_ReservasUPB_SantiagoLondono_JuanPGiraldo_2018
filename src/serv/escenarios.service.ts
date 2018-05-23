@@ -3,23 +3,24 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class EscenariosService {
     
-    public coleccion_ropa = ['Medias de colores', 'Camiseta Verde', 'Pantalones Azules']
+    public lista_src_escenarios = [
+		[
+			"../../assets/img/fotos_escenarios/escenario_cancha_bloque19_1.JPG",
+			"../../assets/img/fotos_escenarios/escenario_cancha_bloque19_2.JPG",
+			"../../assets/img/fotos_escenarios/escenario_cancha_bloque19_3.JPG",
+		],
+		[
+			"../../assets/img/fotos_escenarios/escenario_placas_1.JPG",
+			"../../assets/img/fotos_escenarios/escenario_placas_2.JPG",
+			"../../assets/img/fotos_escenarios/escenario_placas_3.JPG",
+		],
+	]    
     
     prueba(nombre_prenda:string) {
         return nombre_prenda;
-    }
+    } 
 
-    addRopa(nombre_prenda:string):Array<string> {
-        this.coleccion_ropa.push(nombre_prenda);
-        return this.getRopa();
-    }
-
-    deleteRopa(index:number) {
-        this.coleccion_ropa.splice(index, 1);
-        return this.getRopa();
-    }
-
-    getRopa() {
-        return this.coleccion_ropa;
+    getEscenarios(index) {
+        return this.lista_src_escenarios[index];
     }
 }

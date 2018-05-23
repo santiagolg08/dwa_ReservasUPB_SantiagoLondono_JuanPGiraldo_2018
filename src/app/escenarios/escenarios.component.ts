@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { EscenariosService } from '../../serv/escenarios.service';
+
 
 @Component({
   selector: 'app-escenarios',
   templateUrl: './escenarios.component.html',
-  styleUrls: ['./escenarios.component.scss']
+	styleUrls: ['./escenarios.component.scss'],
+	providers: [EscenariosService],
+
 })
 export class EscenariosComponent implements OnInit {
 
@@ -13,7 +17,7 @@ export class EscenariosComponent implements OnInit {
 	
 	public escenario_index:number = 0;
 	public index_img:number = 0;
-	public lista_src_escenarios:string[][];
+	public lista_src_escenarios:string[];
 
   markers: marker[] = [
 	  {	nombre_escenario:"Cancha Fundadores",
@@ -41,33 +45,23 @@ export class EscenariosComponent implements OnInit {
 		 }
   ]
 
-  constructor() { 
+	constructor(
+		private _escenariosService: EscenariosService
+	) { 
+		
+
 		setInterval(()=> {
 			this.cambiarImg(); },4000); 
-		
-		// this.lista_src_escenarios = [][];	
-		this.lista_src_escenarios = [
-		[
-			"../../assets/img/fotos_escenarios/escenario_cancha_bloque19_1.JPG",
-			"../../assets/img/fotos_escenarios/escenario_cancha_bloque19_2.JPG",
-			"../../assets/img/fotos_escenarios/escenario_cancha_bloque19_3.JPG",
-		],
-		[
-			"../../assets/img/fotos_escenarios/escenario_placas_1.JPG",
-			"../../assets/img/fotos_escenarios/escenario_placas_2.JPG",
-			"../../assets/img/fotos_escenarios/escenario_placas_3.JPG",
-		],
-	]
-	
-		
 	}
 
   ngOnInit() {
-		
+		this.lista_src_escenarios = this._escenariosService.getEscenarios(this.escenario_index);
+		console.log(this.lista_src_escenarios);
   }
 	
 	onChange(escenario_index) {
-    this.escenario_index = escenario_index;
+		this.escenario_index = escenario_index;
+		this.lista_src_escenarios = this._escenariosService.getEscenarios(this.escenario_index);
 	}
 	 
 	cambiarImg(){
