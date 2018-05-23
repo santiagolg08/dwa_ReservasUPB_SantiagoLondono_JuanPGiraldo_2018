@@ -22,26 +22,27 @@ export class EscenariosComponent implements OnInit {
   markers: marker[] = [
 	  {	nombre_escenario:"Cancha Fundadores",
 		  lat: 6.242182866847922,
-			lng: -75.59138774871826,
-			src_img : "../../assets/img/fotos_escenarios/escenario_cancha_bloque19_1.JPG",
+			lng: -75.59138774871826
 		},
 	  {
 			nombre_escenario:"Cancha Bloque19",
 			lat: 6.241788699429994,
-			lng: -75.58904748395435,
-			src_img : "../../assets/img/sprites/sprite_1/menu.png",
+			lng: -75.58904748395435
 	  },
 	  {
 			nombre_escenario:"Polideportivo",
 			lat: 6.241761590222094,
-			lng: -75.59048652648926,
-			src_img : "../../assets/img/sprites/sprite_1/profile.png",
+			lng: -75.59048652648926
 		 },
 		 {
 			nombre_escenario:"Cancha de Tenis",
-			lat: 6.241740705871343,
-			lng: -75.5888496710395,
-			src_img : "../../assets/img/sprites/sprite_1/favicon.png",
+			lat: 6.24174127822543,
+			lng: -75.5887556921894
+		 },
+		 {
+			nombre_escenario:"Placas Deportivas",
+			lat: 6.242205791678962,
+			lng: -75.58868069187156
 		 }
   ]
 
@@ -82,5 +83,4 @@ interface marker {
 	nombre_escenario:string;
 	lat: number;
 	lng: number;
-	src_img:string;
 }
