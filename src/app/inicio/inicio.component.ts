@@ -28,62 +28,56 @@ import {bounce} from 'ng-animate';
 export class InicioComponent implements OnInit {
 
   bounce:any;
-  public clase_actual = 1;
-  // public cuadro_actual:HTMLImageElement = "";
+  public pos_actual = 0;
+  public lista_src_escenarios: Array<string>;
 
-  constructor() { }
+  constructor() { 
+    this.lista_src_escenarios=[
+      "../../assets/img/fotos_escenarios/escenario_fundadores_1.JPG",
+      "../../assets/img/fotos_escenarios/escenario_fundadores_2.JPG",
+      "../../assets/img/fotos_escenarios/escenario_fundadores_3.JPG",
+      "../../assets/img/fotos_escenarios/escenario_fundadores_4.JPG"
+    ]
+  }
 
   ngOnInit() {
 
   }
   // Next/previous controls
   public plusSlides(n) {
-    if(n>0){
-      document.getElementById("c"+this.clase_actual).className = "cuadro" + this.clase_actual + " hidden";
-      if(this.clase_actual == 4){
-        this.clase_actual = 1;
+    document.getElementById("cuadro_inicio").style.opacity = "0.2";
+    setTimeout(() => {
+      this.volverOpacity();
+      if(n>0){
+        this.sumarPos();
       }
-      else{
-        this.clase_actual = this.clase_actual + 1;
+      if(n<0){
+        this.restarPos();
       }
-      document.getElementById("c"+this.clase_actual).className = "cuadro" + this.clase_actual;
-      
-    }
-    if(n<0){
-      document.getElementById("c"+this.clase_actual).className = "cuadro" + this.clase_actual + " hidden";
-      if(this.clase_actual == 1){
-        this.clase_actual = 4;
-      }
-      else{
-        this.clase_actual = this.clase_actual - 1;
-      }
-      document.getElementById("c"+this.clase_actual).className = "cuadro" + this.clase_actual;
-    }
-    
+    }, 1500);
   }
-  
-  // Thumbnail image controls
-  public currentSlide(n) {
-    // showSlides(slideIndex = n);
-    alert("mlkdmlefm");
-  }
-  
-  // public showSlides(n) {
-  //   var i;
-  //   var slides = document.getElementsByClassName("mySlides");
-  //   var dots = document.getElementsByClassName("demo");
-  //   var captionText = document.getElementById("caption");
-  //   if (n > slides.length) {slideIndex = 1}
-  //   if (n < 1) {slideIndex = slides.length}
-  //   for (i = 0; i < slides.length; i++) {
-  //     slides[i].style.display = "none";
-  //   }
-  //   for (i = 0; i < dots.length; i++) {
-  //     dots[i].className = dots[i].className.replace(" active", "");
-  //   }
-  //   slides[slideIndex-1].style.display = "block";
-  //   dots[slideIndex-1].className += " active";
-  //   captionText.innerHTML = dots[slideIndex-1].alt; 
-  // }
 
+  sumarPos(){
+    if(this.pos_actual == this.lista_src_escenarios.length -1){
+      this.pos_actual = 0;
+    }
+      else{
+        this.pos_actual = this.pos_actual + 1;
+      }
+     
+  }
+
+  restarPos(){
+    if(this.pos_actual == 0){
+        this.pos_actual = this.lista_src_escenarios.length -1;
+      }
+      else{
+        this.pos_actual = this.pos_actual - 1;
+      }
+    }
+
+  volverOpacity(){
+    document.getElementById("cuadro_inicio").style.opacity = "1";
+  } 
+  
 }
