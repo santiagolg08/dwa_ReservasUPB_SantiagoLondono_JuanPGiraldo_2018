@@ -11,7 +11,9 @@ export class EscenariosComponent implements OnInit {
   lng: number = -75.589807519906;
 	zoom:number = 17;
 	
-	escenario_index:number = 0;
+	public escenario_index:number = 0;
+	public index_img:number = 0;
+	public lista_src_escenarios:string[][];
 
   markers: marker[] = [
 	  {	nombre_escenario:"Cancha Fundadores",
@@ -40,6 +42,23 @@ export class EscenariosComponent implements OnInit {
   ]
 
   constructor() { 
+		setInterval(()=> {
+			this.cambiarImg(); },4000); 
+		
+		// this.lista_src_escenarios = [][];	
+		this.lista_src_escenarios = [
+		[
+			"../../assets/img/fotos_escenarios/escenario_cancha_bloque19_1.JPG",
+			"../../assets/img/fotos_escenarios/escenario_cancha_bloque19_2.JPG",
+			"../../assets/img/fotos_escenarios/escenario_cancha_bloque19_3.JPG",
+		],
+		[
+			"../../assets/img/fotos_escenarios/escenario_placas_1.JPG",
+			"../../assets/img/fotos_escenarios/escenario_placas_2.JPG",
+			"../../assets/img/fotos_escenarios/escenario_placas_3.JPG",
+		],
+	]
+	
 		
 	}
 
@@ -49,7 +68,20 @@ export class EscenariosComponent implements OnInit {
 	
 	onChange(escenario_index) {
     this.escenario_index = escenario_index;
-  }
+	}
+	 
+	cambiarImg(){
+		if(this.index_img == this.lista_src_escenarios.length-1){
+			this.index_img = 0;
+		} 
+		else{
+			this.index_img +=1
+		}
+		
+	 }
+
+
+
 }
 
 interface marker {
