@@ -1,7 +1,7 @@
 <p class="titulo">
   {{param}}
 </p>
-<div class="contDeporte">
+<!-- <div class="contDeporte">
   <div class="imgDeporte">
     <img src="../../assets/img/deportes/{{param}}.png">
   </div>
@@ -26,4 +26,10 @@
       </tbody>
     </table>
   </div>
+</div> -->
+<div class="contTabla">
+  <!-- <select class="select_dia" (change)="onChange($event.target.value)" > -->
+ <select class="select_dia">
+   <option *ngFor="let c of lista_dias;let i = index" [value]="i"> {{c | date:'fullDate'}} </option> -->
+  </select>
 </div>

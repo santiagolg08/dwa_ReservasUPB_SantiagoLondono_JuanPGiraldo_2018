@@ -12,12 +12,27 @@ export class DeportesComponent implements OnInit {
   public param: string;
   public deporte: Deporte;
   public lstDeportes: Deporte[] = [];
+  public lista_dias:Array<Date>;
+  public fecha_hoy:Date;
 
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
     private db: AngularFireDatabase
-  ) { }
+  ) { 
+    this.lista_dias = [];  
+    this.fecha_hoy = new Date();
+    this.lista_dias[0]= new Date(this.fecha_hoy);
+    this.lista_dias[1]= new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDate()+1));
+    this.lista_dias[2]= new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDate()+1));
+    this.lista_dias[3]= new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDate()+1));
+    this.lista_dias[4]= new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDate()+1));
+    this.lista_dias[5]= new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDate()+1));
+    this.lista_dias[6]= new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDate()+1));
+
+   
+    console.log(this.lista_dias);
+  }
 
   ngOnInit() {
     this._route.params.forEach((params: Params) => {
