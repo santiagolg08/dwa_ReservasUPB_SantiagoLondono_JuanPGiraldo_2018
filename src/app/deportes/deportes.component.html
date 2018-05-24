@@ -33,25 +33,20 @@
 <select class="select_dia">
    <option *ngFor="let c of lista_dias;let i = index" [value]="i"> {{c | date:'fullDate'}} </option>
 </select>
-<div class="contTabla">
+<div class="contTabla" *ngIf="deporte != null">
   <table id="tabla_horarios">
     <thead>
       <tr>
-        <th></th>
         <th>Horario</th>
         <th>Escenario</th>
         <th>Reservar</th>
       </tr>
     </thead>
-    <tbody *ngIf="deporte != null">
+    <tbody *ngFor="let h of lista_horarios;let i = index"> 
       <tr>
-        <td>8:00 - 9:00</td>
-      </tr>
-      <tr>
-        <td>9:00 - 10:00</td>
-      </tr>
-      <tr>
-        <td>10:00 - 11:00</td>
+        <td>{{h}} : 00</td>
+        <td>{{param}}</td>
+        <button>Reservar</button>
       </tr>
     </tbody>
   </table>

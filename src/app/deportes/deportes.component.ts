@@ -14,12 +14,28 @@ export class DeportesComponent implements OnInit {
   public lstDeportes: Deporte[] = [];
   public lista_dias:Array<Date>;
   public fecha_hoy:Date;
+  public lista_horarios:Array<string>;
 
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
     private db: AngularFireDatabase
   ) { 
+    this.inicializarListaDias();
+    this.inicializarHorarios();
+
+    
+  }
+
+  ngOnInit() {
+    this._route.params.forEach((params: Params) => {
+      this.param = params['ident'];
+      this.cargarDeportes();
+    });
+
+  }
+
+  inicializarListaDias(){
     this.lista_dias = [];  
     this.fecha_hoy = new Date();
     this.lista_dias[0]= new Date(this.fecha_hoy);
@@ -29,28 +45,11 @@ export class DeportesComponent implements OnInit {
     this.lista_dias[4]= new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDate()+1));
     this.lista_dias[5]= new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDate()+1));
     this.lista_dias[6]= new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDate()+1));
-
-
-      
-    //   this.lista_dias = [
-    //     this.fecha_hoy,
-    //     new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDay() +1)),
-    //     new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDay() +1)),
-    //     new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDay() +1)),
-    //     new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDay() +1)),
-    //     new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDay() +1)),
-    //     new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDay() +1)),
-    //     new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDay() +1)),
-    // ]
-        console.log(this.lista_dias);
+    console.log(this.lista_dias);
   }
 
-  ngOnInit() {
-    this._route.params.forEach((params: Params) => {
-      this.param = params['ident'];
-      this.cargarDeportes();
-    });
-
+  inicializarHorarios(){
+    this.lista_horarios = ["7","8","9","10","11","12","13","14","15","16","17","18"];
   }
 
   cargarDeportes(){
