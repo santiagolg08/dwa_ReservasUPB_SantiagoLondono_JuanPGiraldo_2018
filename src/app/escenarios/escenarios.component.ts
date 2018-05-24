@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EscenariosService } from '../../serv/escenarios.service';
+import { EscenariosService } from '../services/escenarios.service';
 
 
 @Component({
