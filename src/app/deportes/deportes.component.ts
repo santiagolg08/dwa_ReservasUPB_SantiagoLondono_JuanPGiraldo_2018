@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Deporte } from './deporte';
+import {Reserva} from './reserva';
 import { DeportesService } from '../services/deportes.service'
 
 
@@ -19,6 +20,7 @@ export class DeportesComponent implements OnInit {
   public lista_dias: Array<Date>;
   public lista_horarios:Array<string>;
   public fecha_hoy: Date;
+  public dia_seleccionado:Date;
 
   constructor(
     private _route: ActivatedRoute,
@@ -30,13 +32,15 @@ export class DeportesComponent implements OnInit {
     this.deporte = new Deporte();
     this.inicializarListaDias();
     this.inicializarHorarios();
+    this.dia_seleccionado = this.lista_dias[0];
+    console.log(this.dia_seleccionado);
   }
 
   ngOnInit() {
     this._route.params.forEach((params: Params) => {
        this.param = params['ident'];
     });
-    this.deporteService.getDerportes()
+    this.deporteService.getDeportes()
       .snapshotChanges()
       .subscribe(item =>{
         this.lstDeportes = [];
@@ -59,15 +63,10 @@ export class DeportesComponent implements OnInit {
     this.lista_dias[4]= new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDate()+1));
     this.lista_dias[5]= new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDate()+1));
     this.lista_dias[6]= new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDate()+1));
-    console.log(this.lista_dias);
   }
 
   inicializarHorarios(){
     this.lista_horarios = ["7","8","9","10","11","12","13","14","15","16","17","18"];
-  }
-
-  cargarHorario() {
-
   }
 
   agregarDeporte(){
@@ -76,6 +75,24 @@ export class DeportesComponent implements OnInit {
     x.horarios = [];
     this.deporteService.insertDeporte(x);
   }
+
+  onChangeDia(dia_index) {
+    this.dia_seleccionado = this.lista_dias[dia_index];
+  }
+
+  reservarHorario(index_horario){
+    let fecha_reserva = new Date(this.dia_seleccionado);
+    fecha_reserva.setHours(parseInt(this.lista_horarios[index_horario]));
+    fecha_reserva.setMinutes(0);
+    fecha_reserva.setSeconds(0);
+    console.log(fecha_reserva);
+
+    let reserva = new Reserva();
+    reserva.idEscenario = "1";
+    reserva.fechaReserva = fecha_reserva;
+    console.log(reserva.fechaReserva);
+    this.deporteService.insertReserva(reserva);
+}
 
   // cargarDeportes() {
   //   this.lstDeportes = [];

@@ -30,8 +30,8 @@
 <p class="titulo">
   {{param}}
 </p>
-<!-- <select class="select_dia" (change)="onChange($event.target.value)" > -->
-<select class="select_dia">
+<!-- <select class="select_dia"  > -->
+<select class="select_dia" (change)="onChangeDia($event.target.value)">
    <option *ngFor="let c of lista_dias;let i = index" [value]="i"> {{c | date:'fullDate'}} </option>
 </select>
 
@@ -51,7 +51,7 @@
       <tr>
         <td>{{h}} : 00</td>
         <td>{{param}}</td>
-        <button>Reservar</button>
+        <button (click) = "reservarHorario(i)">Reservar</button>
       </tr>
     </tbody>
   </table>
