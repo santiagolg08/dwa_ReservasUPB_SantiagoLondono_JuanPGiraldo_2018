@@ -17,6 +17,7 @@ export class DeportesComponent implements OnInit {
   public deporte: Deporte;
   public lstDeportes: Deporte[];
   public lista_dias: Array<Date>;
+  public lista_horarios:Array<string>;
   public fecha_hoy: Date;
 
   constructor(
@@ -27,29 +28,8 @@ export class DeportesComponent implements OnInit {
   ) {
     //this.nombreDeporte = "";
     this.deporte = new Deporte();
-    this.lista_dias = [];
-    this.fecha_hoy = new Date();
-    this.lista_dias[0] = new Date(this.fecha_hoy);
-    this.lista_dias[1] = new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDate() + 1));
-    this.lista_dias[2] = new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDate() + 1));
-    this.lista_dias[3] = new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDate() + 1));
-    this.lista_dias[4] = new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDate() + 1));
-    this.lista_dias[5] = new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDate() + 1));
-    this.lista_dias[6] = new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDate() + 1));
-
-
-
-    //   this.lista_dias = [
-    //     this.fecha_hoy,
-    //     new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDay() +1)),
-    //     new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDay() +1)),
-    //     new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDay() +1)),
-    //     new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDay() +1)),
-    //     new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDay() +1)),
-    //     new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDay() +1)),
-    //     new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDay() +1)),
-    // ]
-    console.log(this.lista_dias);
+    this.inicializarListaDias();
+    this.inicializarHorarios();
   }
 
   ngOnInit() {
@@ -67,6 +47,34 @@ export class DeportesComponent implements OnInit {
         });
       });
             
+  }
+
+  inicializarListaDias(){
+    this.lista_dias = [];  
+    this.fecha_hoy = new Date();
+    this.lista_dias[0]= new Date(this.fecha_hoy);
+    this.lista_dias[1]= new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDate()+1));
+    this.lista_dias[2]= new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDate()+1));
+    this.lista_dias[3]= new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDate()+1));
+    this.lista_dias[4]= new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDate()+1));
+    this.lista_dias[5]= new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDate()+1));
+    this.lista_dias[6]= new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDate()+1));
+    console.log(this.lista_dias);
+  }
+
+  inicializarHorarios(){
+    this.lista_horarios = ["7","8","9","10","11","12","13","14","15","16","17","18"];
+  }
+
+  cargarHorario() {
+
+  }
+
+  agregarDeporte(){
+    let x = new Deporte();
+    x.$key = this.nombreDeporte;
+    x.horarios = [];
+    this.deporteService.insertDeporte(x);
   }
 
   // cargarDeportes() {
@@ -92,15 +100,5 @@ export class DeportesComponent implements OnInit {
   //     }
   //   }
   // }
-  cargarHorario() {
-
-  }
-
-  agregarDeporte(){
-    let x = new Deporte();
-    x.$key = this.nombreDeporte;
-    x.horarios = [];
-    this.deporteService.insertDeporte(x);
-  }
 
 }

@@ -26,15 +26,18 @@
   </div>
 </div> -->
 
-  <!-- <select class="select_dia" (change)="onChange($event.target.value)" > -->
+  
 <p class="titulo">
   {{param}}
 </p>
-<input type="text" [(ngModel)]="nombreDeporte">
-<button (click)="agregarDeporte()">agregar</button>
+<!-- <select class="select_dia" (change)="onChange($event.target.value)" > -->
 <select class="select_dia">
    <option *ngFor="let c of lista_dias;let i = index" [value]="i"> {{c | date:'fullDate'}} </option>
 </select>
+
+<input type="text" [(ngModel)]="nombreDeporte">
+<button (click)="agregarDeporte()">agregar</button>
+
 <div class="contTabla" *ngIf="deporte != null">
   <table id="tabla_horarios">
     <thead>
