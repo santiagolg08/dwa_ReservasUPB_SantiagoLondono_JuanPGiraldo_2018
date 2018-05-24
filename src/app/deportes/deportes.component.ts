@@ -30,8 +30,19 @@ export class DeportesComponent implements OnInit {
     this.lista_dias[5]= new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDate()+1));
     this.lista_dias[6]= new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDate()+1));
 
-   
-    console.log(this.lista_dias);
+
+      
+    //   this.lista_dias = [
+    //     this.fecha_hoy,
+    //     new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDay() +1)),
+    //     new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDay() +1)),
+    //     new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDay() +1)),
+    //     new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDay() +1)),
+    //     new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDay() +1)),
+    //     new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDay() +1)),
+    //     new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDay() +1)),
+    // ]
+        console.log(this.lista_dias);
   }
 
   ngOnInit() {
