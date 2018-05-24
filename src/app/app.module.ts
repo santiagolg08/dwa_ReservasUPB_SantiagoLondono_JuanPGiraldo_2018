@@ -24,7 +24,9 @@ import {AuthService} from './services/auth.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AgmCoreModule } from '@agm/core';
-import { DeportesComponent } from './deportes/deportes.component';
+import { DeportesComponent } from './deportes/deportes.component'
+import { DeportesService } from './services/deportes.service';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +35,7 @@ import { DeportesComponent } from './deportes/deportes.component';
     AuthComponent,
     InicioComponent,
     EscenariosComponent,
-    DeportesComponent,
+    DeportesComponent
   ],
   imports: [
     BrowserModule, 
@@ -53,7 +55,7 @@ import { DeportesComponent } from './deportes/deportes.component';
       apiKey: 'AIzaSyAqOFBg8PQg9YzRh2QaNXur-pF5BDvgfM0'
     })
   ],
-  providers: [AuthService],
+  providers: [AuthService,DeportesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

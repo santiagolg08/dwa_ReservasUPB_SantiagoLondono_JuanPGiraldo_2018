@@ -30,6 +30,8 @@
 <p class="titulo">
   {{param}}
 </p>
+<input type="text" [(ngModel)]="nombreDeporte">
+<button (click)="agregarDeporte()">agregar</button>
 <select class="select_dia">
    <option *ngFor="let c of lista_dias;let i = index" [value]="i"> {{c | date:'fullDate'}} </option>
 </select>
@@ -43,16 +45,7 @@
         <th>Reservar</th>
       </tr>
     </thead>
-    <tbody *ngIf="deporte != null">
-      <tr>
-        <td>8:00 - 9:00</td>
-      </tr>
-      <tr>
-        <td>9:00 - 10:00</td>
-      </tr>
-      <tr>
-        <td>10:00 - 11:00</td>
-      </tr>
+    <tbody>
     </tbody>
   </table>
 </div>
