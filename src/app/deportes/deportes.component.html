@@ -1,0 +1,58 @@
+
+<!-- <div class="contDeporte">
+  <div class="imgDeporte">
+    <img src="../../assets/img/deportes/{{param}}.png">
+  </div>
+  <div class="tabla">
+    <table id="horarios">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Lunes</th>
+          <th>Martes</th>
+          <th>Miércoles</th>
+          <th>Jueves</th>
+          <th>Viernes</th>
+          <th>Sábado</th>
+          <th>Domingo</th>          
+        </tr>
+      </thead>
+      <tbody *ngIf="deporte != null">
+        <tr>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div> -->
+
+  <!-- <select class="select_dia" (change)="onChange($event.target.value)" > -->
+<p class="titulo">
+  {{param}}
+</p>
+<select class="select_dia">
+   <option *ngFor="let c of lista_dias;let i = index" [value]="i"> {{c | date:'fullDate'}} </option>
+</select>
+<div class="contTabla">
+  <table id="tabla_horarios">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Horario</th>
+        <th>Escenario</th>
+        <th>Reservar</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="deporte != null">
+      <tr>
+        <td>8:00 - 9:00</td>
+      </tr>
+      <tr>
+        <td>9:00 - 10:00</td>
+      </tr>
+      <tr>
+        <td>10:00 - 11:00</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

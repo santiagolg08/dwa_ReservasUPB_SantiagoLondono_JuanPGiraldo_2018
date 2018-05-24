@@ -24,6 +24,7 @@ import {AuthService} from './services/auth.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AgmCoreModule } from '@agm/core';
+import { DeportesComponent } from './deportes/deportes.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { AgmCoreModule } from '@agm/core';
     AuthComponent,
     InicioComponent,
     EscenariosComponent,
+    DeportesComponent,
   ],
   imports: [
     BrowserModule, 

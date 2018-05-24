@@ -9,6 +9,51 @@ header.headerCont {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#009ec3',GradientType=1 );
 }
   
+
+.dropdown {
+    display: inline-block;
+}
+
+.dropdown .dropbtn {
+    cursor: pointer;
+    font-size: 16px;    
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn, .dropbtn:focus {
+    background-color: red;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: -moz-linear-gradient(45deg, #6d0707 0%, #ff0026 100%); 
+    background: -webkit-linear-gradient(45deg,  #6d0707 0%, #ff0026 100%); 
+    background: linear-gradient(45deg, #6d0707 0%, #ff0026 100%);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    float: none;
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.show {
+    display: block;
+}
+
 header.headerCont h1{
     margin: 0px;
     width: 100%;
@@ -97,4 +142,10 @@ cursor: pointer;
     .element_add_menu{
         display: block;
     }
+  }
+
+  #myDropdown{
+      a:hover{
+          cursor: pointer;
+      }
   }

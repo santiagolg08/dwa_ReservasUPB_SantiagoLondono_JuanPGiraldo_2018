@@ -1,0 +1,31 @@
+.contDeporte{
+    display: flex;
+    justify-content: space-around;
+}
+.titulo{
+    font-weight: bold;
+    font-size: 45px;
+    width: 50%;
+    margin-left: 20%;
+    text-align: center;
+    display: inline-block;
+}
+
+.contTabla{
+ border: 1px solid;
+}
+
+#tabla_horarios{
+    border: 1px solid;
+    margin: 5%;
+}
+
+.select_dia{
+    width: 25%;
+    margin: 5% 0% 0% 0%;
+    border: solid 1px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-family: Tahoma;
+    display: inline-block;
+}
