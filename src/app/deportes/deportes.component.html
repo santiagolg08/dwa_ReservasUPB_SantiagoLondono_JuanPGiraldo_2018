@@ -30,6 +30,8 @@
 <p class="titulo">
   {{param}}
 </p>
+<input type="text" [(ngModel)]="nombreDeporte">
+<button (click)="agregarDeporte()">agregar</button>
 <select class="select_dia">
    <option *ngFor="let c of lista_dias;let i = index" [value]="i"> {{c | date:'fullDate'}} </option>
 </select>
