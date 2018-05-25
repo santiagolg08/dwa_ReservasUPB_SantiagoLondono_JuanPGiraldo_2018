@@ -24,7 +24,6 @@ export class DeportesComponent implements OnInit {
   public fecha_hoy: Date;
   public dia_seleccionado:Date;
   public lista_escenarios_Firebase:Escenario[];
-  public lista_reservas: Reserva[];
 
   constructor(
     private _route: ActivatedRoute,
@@ -37,7 +36,6 @@ export class DeportesComponent implements OnInit {
     this.inicializarListaDias();
     this.dia_seleccionado = this.lista_dias[0];
     this.inicializarHorarios();
-    
   }
 
   ngOnInit() {
@@ -64,6 +62,7 @@ export class DeportesComponent implements OnInit {
           this.lista_escenarios_Firebase.push(x as Escenario);
         });
       });
+      
   }
 
   inicializarListaDias(){
@@ -84,17 +83,17 @@ export class DeportesComponent implements OnInit {
   }
 
   cargarHorariosDisponibles(){
-    this. lista_reservas = this.cargarReservas();
+    var lista_reservas = this.cargarReservas();
     let lista_h_disponible = [];
-    console.log(this.lista_reservas);
+    console.log(lista_reservas);
     console.log(this.dia_seleccionado);
     let day_s = this.dia_seleccionado.getDay();
     console.log(day_s);
-    console.log(this.lista_reservas);
-    for(var i in this.lista_reservas){
+    console.log(lista_reservas[0])
+    // for(var i in lista_reservas){
 
-      //Aqui necesito acceder al lista_reservas ....
-    }
+       //Aqui necesito acceder al lista_reservas ....
+    // }
     // for(var i=0;i<lista_reservas.length;i++){
     //   console.log("entre");
     //   console.log(lista_reservas[i].fechaReserva.getDate());
@@ -134,7 +133,7 @@ export class DeportesComponent implements OnInit {
     let userid = this.authService.currentUserId;
     
     let id_escenario = this.obtenerIdEscenario();
-   
+    
     let fecha_reserva = new Date(this.dia_seleccionado);
     fecha_reserva.setHours(parseInt(this.lista_horarios[index_horario]));
     fecha_reserva.setMinutes(0);
@@ -145,17 +144,17 @@ export class DeportesComponent implements OnInit {
     reserva.fechaReserva = fecha_reserva;
     reserva.userId = userid;
     this.deporteService.insertReserva(reserva);
-}
+  }
 
-obtenerIdEscenario(){
-  if(this.lista_escenarios_Firebase != null){
-    for (let i=0; i<this.lista_escenarios_Firebase.length;i++){
-      if(this.lista_escenarios_Firebase[i].$key == this.param){
-        return this.lista_escenarios_Firebase[i].id;
+  obtenerIdEscenario(){
+    if(this.lista_escenarios_Firebase != null){
+      for (let i=0; i<this.lista_escenarios_Firebase.length;i++){
+        if(this.lista_escenarios_Firebase[i].$key == this.param){
+          return this.lista_escenarios_Firebase[i].id;
+        }
       }
     }
   }
-}
 
 
   // cargarDeportes() {
