@@ -8,10 +8,12 @@ export class DeportesService {
 
   deportesList: AngularFireList<any>;
   reservasList: AngularFireList<any>;
+  escenariosList : AngularFireList<any>;
 
   constructor(private firebase: AngularFireDatabase) { 
     this.deportesList = this.firebase.list('Deportes');
     this.reservasList = this.firebase.list('Reservas');
+    this.escenariosList = this.firebase.list('Escenarios');
   }
 
   getDeportes(){
@@ -20,6 +22,10 @@ export class DeportesService {
 
   getReservas(){
     return this.reservasList = this.firebase.list('Reservas');
+  }
+
+  getEscenarios(){
+    return this.escenariosList = this.firebase.list('Escenarios');
   }
 
   insertDeporte(deporte: Deporte){

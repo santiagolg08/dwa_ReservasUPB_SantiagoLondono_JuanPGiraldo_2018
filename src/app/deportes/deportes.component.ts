@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Deporte } from './deporte';
-import {Reserva} from './reserva';
+import { Reserva} from './reserva';
+import { Escenario } from './escenario';
 import { DeportesService } from '../services/deportes.service'
 
 
@@ -21,6 +22,8 @@ export class DeportesComponent implements OnInit {
   public lista_horarios:Array<string>;
   public fecha_hoy: Date;
   public dia_seleccionado:Date;
+  public lista_escenarios:Array<string>;
+  public lista_escenarios_Firebase:Escenario[];
 
   constructor(
     private _route: ActivatedRoute,
@@ -32,6 +35,7 @@ export class DeportesComponent implements OnInit {
     this.deporte = new Deporte();
     this.inicializarListaDias();
     this.inicializarHorarios();
+    this.inicializarListaEscenarios();
     this.dia_seleccionado = this.lista_dias[0];
     console.log(this.dia_seleccionado);
   }
@@ -50,7 +54,16 @@ export class DeportesComponent implements OnInit {
           this.lstDeportes.push(x as Deporte);
         });
       });
-            
+      this.deporteService.getEscenarios()
+      .snapshotChanges()
+      .subscribe(item =>{
+        this.lista_escenarios_Firebase = [];
+        item.forEach(element => {
+          let x = element.payload.toJSON();
+          x["$key"] = element.key;
+          this.lista_escenarios_Firebase.push(x as Escenario);
+        });
+      });
   }
 
   inicializarListaDias(){
@@ -69,6 +82,10 @@ export class DeportesComponent implements OnInit {
     this.lista_horarios = ["7","8","9","10","11","12","13","14","15","16","17","18"];
   }
 
+  inicializarListaEscenarios(){
+    this.lista_escenarios = ["CanchaFundadores","CanchaBloque19","Polideportivo","CanchaTenis","PlacasDeportivas"];
+  }
+
   agregarDeporte(){
     let x = new Deporte();
     x.$key = this.nombreDeporte;
@@ -81,6 +98,8 @@ export class DeportesComponent implements OnInit {
   }
 
   reservarHorario(index_horario){
+    console.log(this.lstDeportes);
+    console.log(this.lista_escenarios_Firebase);
     let fecha_reserva = new Date(this.dia_seleccionado);
     fecha_reserva.setHours(parseInt(this.lista_horarios[index_horario]));
     fecha_reserva.setMinutes(0);
