@@ -24,6 +24,7 @@ export class DeportesComponent implements OnInit {
   public fecha_hoy: Date;
   public dia_seleccionado:Date;
   public lista_escenarios_Firebase:Escenario[];
+  public lista_reservas: Reserva[];
 
   constructor(
     private _route: ActivatedRoute,
@@ -34,8 +35,9 @@ export class DeportesComponent implements OnInit {
   ) {
     this.deporte = new Deporte();
     this.inicializarListaDias();
-    this.inicializarHorarios();
     this.dia_seleccionado = this.lista_dias[0];
+    this.inicializarHorarios();
+    
   }
 
   ngOnInit() {
@@ -78,6 +80,42 @@ export class DeportesComponent implements OnInit {
 
   inicializarHorarios(){
     this.lista_horarios = ["7","8","9","10","11","12","13","14","15","16","17","18"];
+    this.cargarHorariosDisponibles();
+  }
+
+  cargarHorariosDisponibles(){
+    this. lista_reservas = this.cargarReservas();
+    let lista_h_disponible = [];
+    console.log(this.lista_reservas);
+    console.log(this.dia_seleccionado);
+    let day_s = this.dia_seleccionado.getDay();
+    console.log(day_s);
+    console.log(this.lista_reservas);
+    for(var i in this.lista_reservas){
+
+      //Aqui necesito acceder al lista_reservas ....
+    }
+    // for(var i=0;i<lista_reservas.length;i++){
+    //   console.log("entre");
+    //   console.log(lista_reservas[i].fechaReserva.getDate());
+    //   if((lista_reservas[i].fechaReserva.getDay()) == day_s){
+    //     console.log(lista_reservas[i].fechaReserva.getHours().toString());
+    //     let pos = this.lista_horarios.indexOf(lista_reservas[i].fechaReserva.getHours().toString());
+    //   }
+    // }
+
+  }
+
+  cargarReservas(){
+    let lst_reservas = [];
+    this.deporteService.getReservas().snapshotChanges().subscribe(item =>{
+      item.forEach(element => {
+        let x = element.payload.toJSON();
+        x["$key"] = element.key;
+        lst_reservas.push(x as Reserva);
+      });
+    });
+    return lst_reservas;
   }
 
   agregarDeporte(){
@@ -89,6 +127,7 @@ export class DeportesComponent implements OnInit {
 
   onChangeDia(dia_index) {
     this.dia_seleccionado = this.lista_dias[dia_index];
+    this.cargarHorariosDisponibles();
   }
 
   reservarHorario(index_horario){
