@@ -4,7 +4,8 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Deporte } from './deporte';
 import { Reserva} from './reserva';
 import { Escenario } from './escenario';
-import { DeportesService } from '../services/deportes.service'
+import { DeportesService } from '../services/deportes.service';
+import { AuthService } from '../services/auth.service';
 
 
 @Component({
@@ -29,7 +30,8 @@ export class DeportesComponent implements OnInit {
     private _route: ActivatedRoute,
     private _router: Router,
     private db: AngularFireDatabase,
-    private deporteService: DeportesService
+    private deporteService: DeportesService,
+    private authService:AuthService
   ) {
     //this.nombreDeporte = "";
     this.deporte = new Deporte();
@@ -98,8 +100,16 @@ export class DeportesComponent implements OnInit {
   }
 
   reservarHorario(index_horario){
-    console.log(this.lstDeportes);
-    console.log(this.lista_escenarios_Firebase);
+
+    let user = this.authService.currentUser;
+    console.log(user);
+    let userid = this.authService.currentUserId;
+    console.log(userid);
+    let username = this.authService.currentUserName;
+    console.log(username);
+
+    // console.log(this.lstDeportes);
+    // console.log(this.lista_escenarios_Firebase);
     let fecha_reserva = new Date(this.dia_seleccionado);
     fecha_reserva.setHours(parseInt(this.lista_horarios[index_horario]));
     fecha_reserva.setMinutes(0);
