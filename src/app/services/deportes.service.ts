@@ -40,6 +40,7 @@ export class DeportesService {
     this.reservasList.push({
       idEscenario: reserva.idEscenario,
       fechaReserva: reserva.fechaReserva.toString(),
+      idUsuario:reserva.userId
     })
   }
 

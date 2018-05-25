@@ -23,7 +23,6 @@ export class DeportesComponent implements OnInit {
   public lista_horarios:Array<string>;
   public fecha_hoy: Date;
   public dia_seleccionado:Date;
-  public lista_escenarios:Array<string>;
   public lista_escenarios_Firebase:Escenario[];
 
   constructor(
@@ -33,13 +32,10 @@ export class DeportesComponent implements OnInit {
     private deporteService: DeportesService,
     private authService:AuthService
   ) {
-    //this.nombreDeporte = "";
     this.deporte = new Deporte();
     this.inicializarListaDias();
     this.inicializarHorarios();
-    this.inicializarListaEscenarios();
     this.dia_seleccionado = this.lista_dias[0];
-    console.log(this.dia_seleccionado);
   }
 
   ngOnInit() {
@@ -84,10 +80,6 @@ export class DeportesComponent implements OnInit {
     this.lista_horarios = ["7","8","9","10","11","12","13","14","15","16","17","18"];
   }
 
-  inicializarListaEscenarios(){
-    this.lista_escenarios = ["CanchaFundadores","CanchaBloque19","Polideportivo","CanchaTenis","PlacasDeportivas"];
-  }
-
   agregarDeporte(){
     let x = new Deporte();
     x.$key = this.nombreDeporte;
@@ -100,28 +92,32 @@ export class DeportesComponent implements OnInit {
   }
 
   reservarHorario(index_horario){
-
-    let user = this.authService.currentUser;
-    console.log(user);
     let userid = this.authService.currentUserId;
-    console.log(userid);
-    let username = this.authService.currentUserName;
-    console.log(username);
-
-    // console.log(this.lstDeportes);
-    // console.log(this.lista_escenarios_Firebase);
+    
+    let id_escenario = this.obtenerIdEscenario();
+   
     let fecha_reserva = new Date(this.dia_seleccionado);
     fecha_reserva.setHours(parseInt(this.lista_horarios[index_horario]));
     fecha_reserva.setMinutes(0);
     fecha_reserva.setSeconds(0);
-    console.log(fecha_reserva);
 
     let reserva = new Reserva();
-    reserva.idEscenario = "1";
+    reserva.idEscenario = id_escenario;
     reserva.fechaReserva = fecha_reserva;
-    console.log(reserva.fechaReserva);
+    reserva.userId = userid;
     this.deporteService.insertReserva(reserva);
 }
+
+obtenerIdEscenario(){
+  if(this.lista_escenarios_Firebase != null){
+    for (let i=0; i<this.lista_escenarios_Firebase.length;i++){
+      if(this.lista_escenarios_Firebase[i].$key == this.param){
+        return this.lista_escenarios_Firebase[i].id;
+      }
+    }
+  }
+}
+
 
   // cargarDeportes() {
   //   this.lstDeportes = [];
