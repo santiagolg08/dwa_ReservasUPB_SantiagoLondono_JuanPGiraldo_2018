@@ -7,16 +7,19 @@
     <a class="element_menu" id="btsec_inicio" (click)="irAInicio()">Inicio</a>
     <a class="element_menu" id="btsec_espacios" (click)="irAEscenarios()">Escenarios</a>
     <div class="dropdown">
-      <a class="element_menu" id="btsec_deportes" (click)="subMenuDeportes()">Deportes</a>
-      <div *ngIf="deportes != null" class="dropdown-content" id="myDropdown">
-        <a *ngFor="let item of deportes;" (click)="irADeportes(item.key)">{{item.key}}</a>
+      <a class="element_menu" id="btsec_deportes" (click)="subMenuDeportes()">Reservas</a>
+      <div *ngIf="escenarios != null" class="dropdown-content" id="myDropdown">
+        <a *ngFor="let item of escenarios;" (click)="irADeportes(item.$key)">{{item.$key}}</a>
       </div>
     </div>
     <a class="element_menu" id="btsec_contacto">Contacto</a>
-    <a class="element_add_menu" id="btsec_login">Login</a>
-    <a class="element_add_menu" id="btsec_cerrar_Secion">Cerrar Seción</a>
-    <a class="element_add_menu" id="btsec_mis_reservas">Mis Reservas</a>
   </div>
-
-  <img class="imgProfile" id="btsec_login_menu" src="../../assets/img/sprites/sprite_1/profile.png">
+  <div class="dropdown">
+    <img class="imgProfile" id="btsec_login_menu" (click)="subMenuPerfil()" src="../../assets/img/sprites/sprite_1/profile.png">
+    <div class="dropdown-content" id="profileMenu">
+      <a class="element_add_menu" *ngIf = "this.authService.currentUserId == ''" (click)="Login()" id="btsec_login">Login</a>
+      <a class="element_add_menu" *ngIf = "!this.authService.currentUserId == ''" (click)="CerrarSesion()" id="btsec_cerrar_Secion">Cerrar Seción</a>
+      <a class="element_add_menu" *ngIf = "!this.authService.currentUserId == ''" id="btsec_mis_reservas">Mis Reservas</a>
+    </div>
+  </div>
 </header>

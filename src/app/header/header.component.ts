@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { AuthService } from '../services/auth.service';
+import { Escenarios } from '../escenarios/escenarios';
 
 @Component({
   selector: 'app-header',
@@ -9,21 +11,22 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 })
 export class HeaderComponent implements OnInit {
 
-  public deportes: Deporte[] = [];
+  public escenarios: Escenarios[] = [];
 
   constructor( 
     private _route: ActivatedRoute,
     private _router: Router,
-    private db: AngularFireDatabase
+    private db: AngularFireDatabase,
+    public authService: AuthService
   ){}
 
   ngOnInit() {
-    var lstDeportes = this.db.list("Deportes");
-    lstDeportes.snapshotChanges().subscribe(item => {
-      item.forEach(deporte =>{
-        var x = deporte.payload.toJSON();
-        x["key"] = deporte.key;
-        this.deportes.push(x as Deporte);
+    var lstEscenarios = this.db.list("Escenarios");
+    lstEscenarios.snapshotChanges().subscribe(item => {
+      item.forEach(escenario =>{
+        var x = escenario.payload.toJSON();
+        x["$key"] = escenario.key;
+        this.escenarios.push(x as Escenarios);
       });
     });
   }
@@ -31,6 +34,10 @@ export class HeaderComponent implements OnInit {
 
   public subMenuDeportes() {
     document.getElementById("myDropdown").classList.toggle("show");
+  }
+
+  public subMenuPerfil(){
+    document.getElementById("profileMenu").classList.toggle("show");
   }
 
   irAInicio() {
@@ -44,6 +51,9 @@ export class HeaderComponent implements OnInit {
   irADeportes(key){
     this._router.navigate(["/deportes/"+key]);
     this.subMenuDeportes();
+  }
+
+  public login(){
   }
 }
 
