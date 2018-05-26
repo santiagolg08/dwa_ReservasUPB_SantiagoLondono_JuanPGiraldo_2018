@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { AuthService } from '../services/auth.service';
 import { Escenarios } from '../escenarios/escenarios';
+import { element } from 'angular';
 
 @Component({
   selector: 'app-header',
@@ -53,7 +54,9 @@ export class HeaderComponent implements OnInit {
     this.subMenuDeportes();
   }
 
-  public login(){
+  login(){
+    this._router.navigate(["auth"]);
+    this.subMenuPerfil();    
   }
 }
 
