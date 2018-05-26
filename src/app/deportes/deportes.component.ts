@@ -6,7 +6,8 @@ import { Reserva} from './reserva';
 import { Escenario } from './escenario';
 import { DeportesService } from '../services/deportes.service';
 import { AuthService } from '../services/auth.service';
-
+import { EscenariosService } from '../services/escenarios.service';
+import { Escenarios } from '../escenarios/escenarios';
 
 @Component({
   selector: 'app-deportes',
@@ -18,24 +19,29 @@ export class DeportesComponent implements OnInit {
   public param: string;
   public nombreDeporte: string;
   public deporte: Deporte;
-  public lstDeportes: Deporte[];
+  public lstDeportes: Deporte[]= [];
   public lista_dias: Array<Date>;
   public lista_horarios:Array<string>;
   public fecha_hoy: Date;
   public dia_seleccionado:Date;
-  public lista_escenarios_Firebase:Escenario[];
+  public lista_escenarios_Firebase:Escenario[]= [];
+  public lstEscenarios: Escenarios[] = [];
+  public lst_reservas: Reserva[] = [];
 
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
     private db: AngularFireDatabase,
     private deporteService: DeportesService,
+    private escenarioService:EscenariosService,
     private authService:AuthService
   ) {
     this.deporte = new Deporte();
     this.inicializarListaDias();
     this.dia_seleccionado = this.lista_dias[0];
     this.inicializarHorarios();
+  
+    //this.obtenerEscenarios();
   }
 
   ngOnInit() {
@@ -45,25 +51,38 @@ export class DeportesComponent implements OnInit {
     this.deporteService.getDeportes()
       .snapshotChanges()
       .subscribe(item =>{
-        this.lstDeportes = [];
         item.forEach(element => {
           let x = element.payload.toJSON();
           x["$key"] = element.key;
-          this.lstDeportes.push(x as Deporte);
+          this.lstDeportes.push(x as Deporte); 
         });
       });
-      this.deporteService.getEscenarios()
-      .snapshotChanges()
+      this.escenarioService.getListaEscenarios().snapshotChanges()
       .subscribe(item =>{
-        this.lista_escenarios_Firebase = [];
         item.forEach(element => {
           let x = element.payload.toJSON();
           x["$key"] = element.key;
-          this.lista_escenarios_Firebase.push(x as Escenario);
+          this.lstEscenarios.push(x as Escenarios);       
         });
       });
+      this.deporteService.getReservas().snapshotChanges().subscribe(item =>{
+        item.forEach(element => {
+          let x = element.payload.toJSON();
+          x["$key"] = element.key;
+          this.lst_reservas.push(x as Reserva);
+        });
+      });  
+
       
   }
+
+  // obtenerEscenarios(){
+  //   this.escenarioService.getListaEscenarios().snapshotChanges().map( changes =>{
+  //     return changes.map( c => ({ key:c.payload.key, id: c.payload.val()}));
+  //   }).subscribe( item => {
+  //     this.lstEscenarios = item;
+  //   });
+  // }
 
   inicializarListaDias(){
     this.lista_dias = [];  
@@ -82,18 +101,19 @@ export class DeportesComponent implements OnInit {
     this.cargarHorariosDisponibles();
   }
 
+
   cargarHorariosDisponibles(){
-    var lista_reservas = this.cargarReservas();
     let lista_h_disponible = [];
-    console.log(lista_reservas);
     console.log(this.dia_seleccionado);
     let day_s = this.dia_seleccionado.getDay();
     console.log(day_s);
-    console.log(lista_reservas[0])
-    // for(var i in lista_reservas){
+    setTimeout(() => {
+      this.lst_reservas.forEach(item =>{
+        console.log(item.fechaReserva);
+      });     
+    }, 5000);
 
-       //Aqui necesito acceder al lista_reservas ....
-    // }
+
     // for(var i=0;i<lista_reservas.length;i++){
     //   console.log("entre");
     //   console.log(lista_reservas[i].fechaReserva.getDate());
@@ -106,15 +126,7 @@ export class DeportesComponent implements OnInit {
   }
 
   cargarReservas(){
-    let lst_reservas = [];
-    this.deporteService.getReservas().snapshotChanges().subscribe(item =>{
-      item.forEach(element => {
-        let x = element.payload.toJSON();
-        x["$key"] = element.key;
-        lst_reservas.push(x as Reserva);
-      });
-    });
-    return lst_reservas;
+  
   }
 
   agregarDeporte(){

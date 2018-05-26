@@ -26,6 +26,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgmCoreModule } from '@agm/core';
 import { DeportesComponent } from './deportes/deportes.component'
 import { DeportesService } from './services/deportes.service';
+import { EscenariosService } from './services/escenarios.service';
 
 
 @NgModule({
@@ -55,7 +56,7 @@ import { DeportesService } from './services/deportes.service';
       apiKey: 'AIzaSyAqOFBg8PQg9YzRh2QaNXur-pF5BDvgfM0'
     })
   ],
-  providers: [AuthService,DeportesService],
+  providers: [AuthService,DeportesService,EscenariosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
