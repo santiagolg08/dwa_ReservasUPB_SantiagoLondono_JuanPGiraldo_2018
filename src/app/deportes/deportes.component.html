@@ -38,7 +38,7 @@
 <!-- <input type="text" [(ngModel)]="nombreDeporte">
 <button (click)="agregarDeporte()">agregar</button> -->
 
-<div class="contTabla" *ngIf="lstEscenarios != null">
+<div class="contTabla" *ngIf="lista_horarios != null">
   <table id="tabla_horarios">
     <thead>
       <tr>
@@ -55,8 +55,8 @@
       </tr>
     </tbody>
   </table>
-  <div *ngFor="let e of lstEscenarios;let i = index">
+  <!-- <div *ngFor="let e of lstEscenarios;let i = index">
     <div>{{i}}</div>
       <div>{{e.$key}}</div>
-  </div>
+  </div> -->
 </div>

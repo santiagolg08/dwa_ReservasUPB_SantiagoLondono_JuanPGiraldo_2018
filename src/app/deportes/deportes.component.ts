@@ -39,7 +39,6 @@ export class DeportesComponent implements OnInit {
     this.inicializarListaDias();
     this.dia_seleccionado = this.lista_dias[0];
     // this.inicializarHorarios();
-  
   }
 
   ngOnInit() {
@@ -96,7 +95,7 @@ export class DeportesComponent implements OnInit {
   }
 
   inicializarHorarios(){
-    this.lista_horarios = ["7","8","9","10","11","12","13","14","15","16","17","18"];
+    // this.lista_horarios = ["7","8","9","10","11","12","13","14","15","16","17","18"];
     this.cargarHorariosDisponibles();
   }
 
@@ -106,6 +105,7 @@ export class DeportesComponent implements OnInit {
     let day_s = this.dia_seleccionado.getDay();
     setTimeout(() => { 
       let id_escenario = this.obtenerIdEscenario();
+      console.log(this.lst_reservas);
       this.lst_reservas.forEach(item =>{
         console.log(item.fechaReserva);
         if (item.idEscenario == id_escenario){
@@ -120,29 +120,9 @@ export class DeportesComponent implements OnInit {
           }
         }
         
-      });     
-    }, 5000);
-    // console.log(this.lst_reservas);
-    // this.lst_reservas.forEach(item =>{
-    //       console.log(item.fechaReserva);
-    // });
-    // console.log(this.lst_reservas);
-    // console.log(this.lst_reservas[0]);
-
-
-    // for(var i=0;i<lista_reservas.length;i++){
-    //   console.log("entre");
-    //   console.log(lista_reservas[i].fechaReserva.getDate());
-    //   if((lista_reservas[i].fechaReserva.getDay()) == day_s){
-    //     console.log(lista_reservas[i].fechaReserva.getHours().toString());
-    //     let pos = this.lista_horarios.indexOf(lista_reservas[i].fechaReserva.getHours().toString());
-    //   }
-    // }
-
-  }
-
-  cargarReservas(){
-  
+      });
+      this.lista_horarios = lista_h_disponible;
+    }, 1000);
   }
 
   // agregarDeporte(){
@@ -172,6 +152,21 @@ export class DeportesComponent implements OnInit {
     reserva.fechaReserva = fecha_reserva;
     reserva.userId = userid;
     this.deporteService.insertReserva(reserva);
+    this.lista_horarios = [];
+    // this.cargarReservas();
+    // this.cargarHorariosDisponibles();
+    // this.ngOnInit();
+  }
+
+  cargarReservas(){
+    this.lst_reservas = [];
+    this.deporteService.getReservas().snapshotChanges().subscribe(item =>{
+      item.forEach(element => {
+        let x = element.payload.toJSON();
+        x["$key"] = element.key;
+        this.lst_reservas.push(x as Reserva);
+      });
+    });  
   }
 
   obtenerIdEscenario(){
