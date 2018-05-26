@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Deporte } from './deporte';
-import { Reserva} from './reserva';
+import { Reserva } from './reserva';
 import { Escenario } from './escenario';
 import { DeportesService } from '../services/deportes.service';
 import { AuthService } from '../services/auth.service';
@@ -20,10 +20,10 @@ export class DeportesComponent implements OnInit {
   // public nombreDeporte: string;
   // public deporte: Deporte;
   public lista_dias: Array<Date>;
-  public lista_horarios:Array<string>;
+  public lista_horarios: Array<string>;
   public fecha_hoy: Date;
-  public dia_seleccionado:Date;
-  public lstDeportes: Deporte[]= [];
+  public dia_seleccionado: Date;
+  public lstDeportes: Deporte[] = [];
   public lstEscenarios: Escenarios[] = [];
   public lst_reservas: Reserva[] = [];
 
@@ -32,8 +32,8 @@ export class DeportesComponent implements OnInit {
     private _router: Router,
     private db: AngularFireDatabase,
     private deporteService: DeportesService,
-    private escenarioService:EscenariosService,
-    private authService:AuthService
+    private escenarioService: EscenariosService,
+    private authService: AuthService
   ) {
     // this.deporte = new Deporte();
     this.inicializarListaDias();
@@ -43,35 +43,38 @@ export class DeportesComponent implements OnInit {
 
   ngOnInit() {
     this._route.params.forEach((params: Params) => {
-       this.param = params['ident'];
-    });
-    this.deporteService.getDeportes()
-      .snapshotChanges()
-      .subscribe(item =>{
-        item.forEach(element => {
-          let x = element.payload.toJSON();
-          x["$key"] = element.key;
-          this.lstDeportes.push(x as Deporte); 
-        });
-      });
-      this.escenarioService.getListaEscenarios().snapshotChanges()
-      .subscribe(item =>{
-        item.forEach(element => {
-          let x = element.payload.toJSON();
-          x["$key"] = element.key;
-          this.lstEscenarios.push(x as Escenarios);       
-        });
-      });
-      this.deporteService.getReservas().snapshotChanges().subscribe(item =>{
-        item.forEach(element => {
-          let x = element.payload.toJSON();
-          x["$key"] = element.key;
-          this.lst_reservas.push(x as Reserva);
-        });
-      });  
+      this.param = params['ident'];
+      this.obtenerDatos();
       this.obtenerIdEscenario();
       this.inicializarHorarios();
-      
+    });
+  }
+
+  obtenerDatos() {
+    this.deporteService.getDeportes()
+      .snapshotChanges()
+      .subscribe(item => {
+        item.forEach(element => {
+          let x = element.payload.toJSON();
+          x["$key"] = element.key;
+          this.lstDeportes.push(x as Deporte);
+        });
+      });
+    this.escenarioService.getListaEscenarios().snapshotChanges()
+      .subscribe(item => {
+        item.forEach(element => {
+          let x = element.payload.toJSON();
+          x["$key"] = element.key;
+          this.lstEscenarios.push(x as Escenarios);
+        });
+      });
+    this.deporteService.getReservas().snapshotChanges().subscribe(item => {
+      item.forEach(element => {
+        let x = element.payload.toJSON();
+        x["$key"] = element.key;
+        this.lst_reservas.push(x as Reserva);
+      });
+    });
   }
 
   // obtenerEscenarios(){
@@ -82,44 +85,44 @@ export class DeportesComponent implements OnInit {
   //   });
   // }
 
-  inicializarListaDias(){
-    this.lista_dias = [];  
+  inicializarListaDias() {
+    this.lista_dias = [];
     this.fecha_hoy = new Date();
-    this.lista_dias[0]= new Date(this.fecha_hoy);
-    this.lista_dias[1]= new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDate()+1));
-    this.lista_dias[2]= new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDate()+1));
-    this.lista_dias[3]= new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDate()+1));
-    this.lista_dias[4]= new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDate()+1));
-    this.lista_dias[5]= new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDate()+1));
-    this.lista_dias[6]= new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDate()+1));
+    this.lista_dias[0] = new Date(this.fecha_hoy);
+    this.lista_dias[1] = new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDate() + 1));
+    this.lista_dias[2] = new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDate() + 1));
+    this.lista_dias[3] = new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDate() + 1));
+    this.lista_dias[4] = new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDate() + 1));
+    this.lista_dias[5] = new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDate() + 1));
+    this.lista_dias[6] = new Date(this.fecha_hoy.setDate(this.fecha_hoy.getDate() + 1));
   }
 
-  inicializarHorarios(){
+  inicializarHorarios() {
     // this.lista_horarios = ["7","8","9","10","11","12","13","14","15","16","17","18"];
     this.cargarHorariosDisponibles();
   }
 
 
-  cargarHorariosDisponibles(){
-    let lista_h_disponible = ["7","8","9","10","11","12","13","14","15","16","17","18"];
+  cargarHorariosDisponibles() {
+    let lista_h_disponible = ["7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18"];
     let day_s = this.dia_seleccionado.getDay();
-    setTimeout(() => { 
+    setTimeout(() => {
       let id_escenario = this.obtenerIdEscenario();
       console.log(this.lst_reservas);
-      this.lst_reservas.forEach(item =>{
+      this.lst_reservas.forEach(item => {
         console.log(item.fechaReserva);
-        if (item.idEscenario == id_escenario){
+        if (item.idEscenario == id_escenario) {
           let fecha = new Date(item.fechaReserva);
           console.log(fecha);
           console.log(fecha.getHours());
-          if(fecha.getDay() == day_s){
+          if (fecha.getDay() == day_s) {
             console.log("coinciden");
             let pos = lista_h_disponible.indexOf(fecha.getHours().toString())
-            lista_h_disponible.splice(pos,1);
+            lista_h_disponible.splice(pos, 1);
             console.log(lista_h_disponible);
           }
         }
-        
+
       });
       this.lista_horarios = lista_h_disponible;
     }, 1000);
@@ -137,11 +140,11 @@ export class DeportesComponent implements OnInit {
     this.cargarHorariosDisponibles();
   }
 
-  reservarHorario(index_horario){
+  reservarHorario(index_horario) {
     let userid = this.authService.currentUserId;
-    
+
     let id_escenario = this.obtenerIdEscenario();
-    
+
     let fecha_reserva = new Date(this.dia_seleccionado);
     fecha_reserva.setHours(parseInt(this.lista_horarios[index_horario]));
     fecha_reserva.setMinutes(0);
@@ -158,21 +161,21 @@ export class DeportesComponent implements OnInit {
     // this.ngOnInit();
   }
 
-  cargarReservas(){
+  cargarReservas() {
     this.lst_reservas = [];
-    this.deporteService.getReservas().snapshotChanges().subscribe(item =>{
+    this.deporteService.getReservas().snapshotChanges().subscribe(item => {
       item.forEach(element => {
         let x = element.payload.toJSON();
         x["$key"] = element.key;
         this.lst_reservas.push(x as Reserva);
       });
-    });  
+    });
   }
 
-  obtenerIdEscenario(){
-    if(this.lstEscenarios != null){
-      for (let i=0; i<this.lstEscenarios.length;i++){
-        if(this.lstEscenarios[i].$key == this.param){
+  obtenerIdEscenario() {
+    if (this.lstEscenarios != null) {
+      for (let i = 0; i < this.lstEscenarios.length; i++) {
+        if (this.lstEscenarios[i].$key == this.param) {
           return this.lstEscenarios[i].id;
         }
       }
