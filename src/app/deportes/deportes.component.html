@@ -35,10 +35,10 @@
    <option *ngFor="let c of lista_dias;let i = index" [value]="i"> {{c | date:'fullDate'}} </option>
 </select>
 
-<input type="text" [(ngModel)]="nombreDeporte">
-<button (click)="agregarDeporte()">agregar</button>
+<!-- <input type="text" [(ngModel)]="nombreDeporte">
+<button (click)="agregarDeporte()">agregar</button> -->
 
-<div class="contTabla" *ngIf="deporte != null">
+<div class="contTabla" *ngIf="lstEscenarios != null">
   <table id="tabla_horarios">
     <thead>
       <tr>

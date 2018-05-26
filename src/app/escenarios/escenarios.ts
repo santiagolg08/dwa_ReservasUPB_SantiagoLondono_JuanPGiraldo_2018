@@ -1,6 +1,6 @@
 export class Escenarios {
     public $key: string;
-    public id: number;
+    public id: string;
 
     public Escenarios(){
 
