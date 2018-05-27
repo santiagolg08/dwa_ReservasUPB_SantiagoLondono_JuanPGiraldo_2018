@@ -9,9 +9,9 @@ import { DeportesComponent} from './deportes/deportes.component';
 
 
 const appRoutes: Routes = [
-    { path:'', component:InicioComponent },
-    { path:'inicio', component:InicioComponent },
-    { path:'auth', component:AuthComponent },
+    { path: '', component:InicioComponent },
+    { path: 'inicio', component:InicioComponent },
+    { path: 'auth', component:AuthComponent },
     { path: 'header', component:HeaderComponent},
     { path: 'escenarios',component:EscenariosComponent},
     { path: 'deportes/:ident', component:DeportesComponent}

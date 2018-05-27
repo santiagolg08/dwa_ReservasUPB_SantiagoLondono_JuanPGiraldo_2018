@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -60,6 +60,7 @@ export class AuthComponent implements OnInit {
   validateVerificationEmail():void{
       if(this.authService.currentUserEmailVerified){
         alert("Usuario Ingresado:" + this.authService.currentUserName);
+        this.router.navigate(["inicio"]);
       }else{
         alert("Este correo no ha sido verificado");        
         this.authService.signOut();
