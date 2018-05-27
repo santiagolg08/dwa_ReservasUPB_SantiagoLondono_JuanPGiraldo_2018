@@ -1,4 +1,3 @@
-
 <!-- <div class="contDeporte">
   <div class="imgDeporte">
     <img src="../../assets/img/deportes/{{param}}.png">
@@ -26,13 +25,13 @@
   </div>
 </div> -->
 
-  
+
 <p class="titulo">
   {{param}}
 </p>
 <!-- <select class="select_dia"  > -->
 <select class="select_dia" (change)="onChangeDia($event.target.value)">
-   <option *ngFor="let c of lista_dias;let i = index" [value]="i"> {{c | date:'fullDate'}} </option>
+  <option *ngFor="let c of lista_dias;let i = index" [value]="i"> {{c | date:'fullDate'}} </option>
 </select>
 
 <!-- <input type="text" [(ngModel)]="nombreDeporte">
@@ -47,11 +46,13 @@
         <th>Reservar</th>
       </tr>
     </thead>
-    <tbody *ngFor="let h of lista_horarios;let i = index"> 
-      <tr>
+    <tbody>
+      <tr *ngFor="let h of lista_horarios;let i = index">
         <td>{{h}} : 00</td>
         <td>{{param}}</td>
-        <button (click) = "reservarHorario(i)">Reservar</button>
+        <td class="text-center">
+          <button (click)="reservarHorario(i)">Reservar</button>
+        </td>
       </tr>
     </tbody>
   </table>

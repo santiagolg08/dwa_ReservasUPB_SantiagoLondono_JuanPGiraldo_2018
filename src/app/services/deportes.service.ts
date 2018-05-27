@@ -44,4 +44,8 @@ export class DeportesService {
     })
   }
 
+  eliminarReserva(key: string){
+    this.reservasList.remove(key);
+  }
+
 }

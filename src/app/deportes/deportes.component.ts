@@ -155,7 +155,7 @@ export class DeportesComponent implements OnInit {
     reserva.fechaReserva = fecha_reserva;
     reserva.userId = userid;
     this.deporteService.insertReserva(reserva);
-    this.irAInicio();
+    this.irReservas();
     // this.obtenerDatos();
     // this.obtenerIdEscenario();
     // this.inicializarHorarios();
@@ -172,6 +172,10 @@ export class DeportesComponent implements OnInit {
 
   irALogin() {
     this._router.navigate(['/auth']);
+  }
+
+  irReservas(){
+    this._router.navigate(['reservas']);    
   }
 
   cargarReservas() {

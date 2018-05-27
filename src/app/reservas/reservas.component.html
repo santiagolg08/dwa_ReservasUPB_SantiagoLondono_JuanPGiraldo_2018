@@ -1,3 +1,24 @@
-<p>
-  reservas works!
+<p class="titulo">
+  Mis Reservas
 </p>
+
+<div class="contTabla">
+  <table id="tabla_reservas" *ngIf="lstReservas != []">
+    <thead>
+      <tr>
+        <th>Horario</th>
+        <th>Escenario</th>
+        <th>Eliminar</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let r of lstReservas;let i = index">
+      <tr id="r.$key">
+        <td>{{transformarFecha(r.fechaReserva)}}</td>
+        <td>{{buscarNombreEscenario(r.idEscenario)}}</td>
+        <td class="text-center">
+          <button (click)="eliminarReserva(r.$key, i)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
