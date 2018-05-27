@@ -12,7 +12,7 @@
         <a *ngFor="let item of escenarios;" (click)="irADeportes(item.$key)">{{item.$key}}</a>
       </div>
     </div>
-    <a class="element_menu" id="btsec_contacto">Contacto</a>
+    <a class="element_menu" id="btsec_contacto" (click)="irAContacto()">Contacto</a>
   </div>
   <div class="dropdown">
     <img class="imgProfile" id="btsec_login_menu" (click)="subMenuPerfil()" src="../../assets/img/sprites/sprite_1/profile.png">
