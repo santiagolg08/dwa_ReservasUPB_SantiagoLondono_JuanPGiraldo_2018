@@ -141,6 +141,7 @@ export class DeportesComponent implements OnInit {
 
   reservarHorario(index_horario) {
     let userid = this.authService.currentUserId;
+    if(userid != ""){
 
     let id_escenario = this.obtenerIdEscenario();
 
@@ -158,10 +159,19 @@ export class DeportesComponent implements OnInit {
     // this.obtenerDatos();
     // this.obtenerIdEscenario();
     // this.inicializarHorarios();
+    }
+    else{
+      alert("No estas registrado");
+      this.irALogin();
+    }
   }
 
   irAInicio() {
     this._router.navigate(['/inicio']);
+  }
+
+  irALogin() {
+    this._router.navigate(['/auth']);
   }
 
   cargarReservas() {
