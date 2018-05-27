@@ -33,10 +33,11 @@ export class InicioComponent implements OnInit {
 
   constructor() { 
     this.lista_src_escenarios=[
-      "../../assets/img/fotos_escenarios/escenario_fundadores_1.JPG",
-      "../../assets/img/fotos_escenarios/escenario_fundadores_2.JPG",
+      "../../assets/img/fotos_escenarios/escenario_polideportivo_8.jpg",
+      "../../assets/img/fotos_escenarios/escenario_polideportivo_3.JPG",
       "../../assets/img/fotos_escenarios/escenario_fundadores_3.JPG",
-      "../../assets/img/fotos_escenarios/escenario_fundadores_4.JPG"
+      "../../assets/img/fotos_escenarios/escenario_tenis_3.JPG",
+      "../../assets/img/fotos_escenarios/escenario_placas_5.JPG",
     ]
   }
 
