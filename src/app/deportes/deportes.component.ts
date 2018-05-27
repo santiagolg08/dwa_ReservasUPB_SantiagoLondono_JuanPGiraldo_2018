@@ -154,10 +154,14 @@ export class DeportesComponent implements OnInit {
     reserva.fechaReserva = fecha_reserva;
     reserva.userId = userid;
     this.deporteService.insertReserva(reserva);
-    this.lista_horarios = [];
-    // this.cargarReservas();
-    // this.cargarHorariosDisponibles();
-    // this.ngOnInit();
+    this.irAInicio();
+    // this.obtenerDatos();
+    // this.obtenerIdEscenario();
+    // this.inicializarHorarios();
+  }
+
+  irAInicio() {
+    this._router.navigate(['/inicio']);
   }
 
   cargarReservas() {
