@@ -122,7 +122,6 @@ export class DeportesComponent implements OnInit {
             console.log(lista_h_disponible);
           }
         }
-
       });
       this.lista_horarios = lista_h_disponible;
     }, 1000);
