@@ -26,26 +26,37 @@
   </div>
 </div> -->
 
-  <!-- <select class="select_dia" (change)="onChange($event.target.value)" > -->
+  
 <p class="titulo">
   {{param}}
 </p>
-<input type="text" [(ngModel)]="nombreDeporte">
-<button (click)="agregarDeporte()">agregar</button>
-<select class="select_dia">
+<!-- <select class="select_dia"  > -->
+<select class="select_dia" (change)="onChangeDia($event.target.value)">
    <option *ngFor="let c of lista_dias;let i = index" [value]="i"> {{c | date:'fullDate'}} </option>
 </select>
-<div class="contTabla">
+
+<!-- <input type="text" [(ngModel)]="nombreDeporte">
+<button (click)="agregarDeporte()">agregar</button> -->
+
+<div class="contTabla" *ngIf="lista_horarios != null">
   <table id="tabla_horarios">
     <thead>
       <tr>
-        <th></th>
         <th>Horario</th>
         <th>Escenario</th>
         <th>Reservar</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody *ngFor="let h of lista_horarios;let i = index"> 
+      <tr>
+        <td>{{h}} : 00</td>
+        <td>{{param}}</td>
+        <button (click) = "reservarHorario(i)">Reservar</button>
+      </tr>
     </tbody>
   </table>
+  <!-- <div *ngFor="let e of lstEscenarios;let i = index">
+    <div>{{i}}</div>
+      <div>{{e.$key}}</div>
+  </div> -->
 </div>
