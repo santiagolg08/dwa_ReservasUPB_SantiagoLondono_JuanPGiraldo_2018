@@ -27,6 +27,7 @@ import { AgmCoreModule } from '@agm/core';
 import { DeportesComponent } from './deportes/deportes.component'
 import { DeportesService } from './services/deportes.service';
 import { EscenariosService } from './services/escenarios.service';
+// import { UICarouselModule } from "ui-carousel";
 
 
 @NgModule({
