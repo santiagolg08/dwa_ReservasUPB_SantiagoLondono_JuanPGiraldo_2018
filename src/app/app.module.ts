@@ -27,6 +27,7 @@ import { AgmCoreModule } from '@agm/core';
 import { DeportesComponent } from './deportes/deportes.component'
 import { DeportesService } from './services/deportes.service';
 import { EscenariosService } from './services/escenarios.service';
+import { ReservasComponent } from './reservas/reservas.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { EscenariosService } from './services/escenarios.service';
     AuthComponent,
     InicioComponent,
     EscenariosComponent,
-    DeportesComponent
+    DeportesComponent,
+    ReservasComponent
   ],
   imports: [
     BrowserModule, 

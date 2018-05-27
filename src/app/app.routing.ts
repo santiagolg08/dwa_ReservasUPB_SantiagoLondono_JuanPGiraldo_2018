@@ -6,6 +6,7 @@ import { AuthComponent } from './auth/auth.component';
 import { HeaderComponent} from './header/header.component';
 import { EscenariosComponent} from './escenarios/escenarios.component';
 import { DeportesComponent} from './deportes/deportes.component';
+import { ReservasComponent } from './reservas/reservas.component';
 
 
 const appRoutes: Routes = [
@@ -14,6 +15,7 @@ const appRoutes: Routes = [
     { path: 'auth', component:AuthComponent },
     { path: 'header', component:HeaderComponent},
     { path: 'escenarios',component:EscenariosComponent},
+    { path: 'reservas',component:ReservasComponent},
     { path: 'deportes/:ident', component:DeportesComponent}
        
 ];

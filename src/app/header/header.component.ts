@@ -73,6 +73,11 @@ export class HeaderComponent implements OnInit {
     this.subMenuPerfil();
   }
 
+  misReservas(){
+    this._router.navigate(["reservas"]);
+    this.subMenuPerfil();
+  }
+
   cerrarSesion(){
     this.authService.signOut();
     this._router.navigate(["auth"]);

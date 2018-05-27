@@ -18,8 +18,8 @@
     <img class="imgProfile" id="btsec_login_menu" (click)="subMenuPerfil()" src="../../assets/img/sprites/sprite_1/profile.png">
     <div class="dropdown-content" id="profileMenu">
       <a class="element_add_menu" *ngIf = "this.authService.currentUserId == ''" (click)="login()" id="btsec_login">Login</a>
-      <a class="element_add_menu" *ngIf = "!this.authService.currentUserId == ''" id="btsec_mis_reservas">Mis Reservas</a>
-      <a class="element_add_menu" *ngIf = "!this.authService.currentUserId == ''" (click)="cerrarSesion()" id="btsec_cerrar_Secion">Cerrar Seción</a>
+      <a class="element_add_menu" *ngIf = "!this.authService.currentUserId == ''" (click)="misReservas()" id="btsec_mis_reservas">Mis Reservas</a>
+      <a class="element_add_menu" *ngIf = "!this.authService.currentUserId == ''" (click)="cerrarSesion()" id="btsec_cerrar_Secion">Cerrar Sesión</a>
     </div>
   </div>
 </header>
