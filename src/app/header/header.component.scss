@@ -31,7 +31,7 @@ header.headerCont {
 }
 
 .dropdown-content {
-    display: none;
+    display: block;
     position: absolute;
     background: -moz-linear-gradient(45deg, #6d0707 0%, #ff0026 100%); 
     background: -webkit-linear-gradient(45deg,  #6d0707 0%, #ff0026 100%); 
@@ -43,10 +43,16 @@ header.headerCont {
 
 #profileMenu{
     margin-top: 2.1%;
+    max-height:0em;	
+    overflow: hidden;
+    transition: 0.5s max-height 0.3s;
 }
 
 #myDropdown{
     margin-top: 1.5%;
+    max-height:0em;	
+    overflow: hidden;
+    transition: 0.5s max-height 0.3s;
 }
 
 .dropdown-content a {
@@ -58,8 +64,11 @@ header.headerCont {
     text-align: left;
 }
 
-.show {
-    display: block;
+.showPerfil {
+    max-height: 3em !important;
+}
+.showReservas {
+    max-height: 13em !important;
 }
 
 header.headerCont h1{
@@ -137,9 +146,14 @@ cursor: pointer;
         margin-top:3%;
     }
     
-    .menu{
-        // display:block;
-        //display: none;
+    #menu{
+        max-height:0em;	
+        overflow: hidden;
+        transition: 1s max-height 0.3s;
+    }
+
+    .display{
+        max-height: 24em !important;
     }
     
     .element_menu{
