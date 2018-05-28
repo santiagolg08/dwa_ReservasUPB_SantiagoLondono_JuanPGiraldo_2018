@@ -35,24 +35,23 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-
   functionClick(event) {
     if (event.target.id == "btsec_login_menu") {
-      document.getElementById("myDropdown").classList.remove("show");
+      document.getElementById("myDropdown").classList.remove("showReservas");
     } else if (event.target.id == "btsec_deportes") {
-      document.getElementById("profileMenu").classList.remove("show");
+      document.getElementById("profileMenu").classList.remove("showPerfil");
     }else{
-      document.getElementById("myDropdown").classList.remove("show");      
-      document.getElementById("profileMenu").classList.remove("show");
+      document.getElementById("myDropdown").classList.remove("showReservas");      
+      document.getElementById("profileMenu").classList.remove("showPerfil");
     }
   }
 
   public subMenuDeportes() {
-    document.getElementById("myDropdown").classList.toggle("show");
+    document.getElementById("myDropdown").classList.toggle("showReservas");
   }
 
   public subMenuPerfil() {
-    document.getElementById("profileMenu").classList.toggle("show");
+    document.getElementById("profileMenu").classList.toggle("showPerfil");
   }
 
   irAInicio() {
@@ -86,6 +85,10 @@ export class HeaderComponent implements OnInit {
     this.authService.signOut();
     this._router.navigate(["auth"]);
     this.subMenuPerfil();
+  }
+
+  ocultarMenu(){
+    document.getElementById("menu").classList.toggle("display");     
   }
 }
 
