@@ -22,7 +22,7 @@ import {bounce} from 'ng-animate';
             opacity: 0
           }))
         ])
-    ])
+    ]),
   ]
 })
 export class InicioComponent implements OnInit {
@@ -30,14 +30,17 @@ export class InicioComponent implements OnInit {
   bounce:any;
   public pos_actual = 0;
   public lista_src_escenarios: Array<string>;
+  public heroes:Array<string>;
 
   constructor() { 
     this.lista_src_escenarios=[
-      "../../assets/img/fotos_escenarios/escenario_fundadores_1.JPG",
-      "../../assets/img/fotos_escenarios/escenario_fundadores_2.JPG",
+      "../../assets/img/fotos_escenarios/escenario_polideportivo_8.jpg",
+      "../../assets/img/fotos_escenarios/escenario_polideportivo_3.JPG",
       "../../assets/img/fotos_escenarios/escenario_fundadores_3.JPG",
-      "../../assets/img/fotos_escenarios/escenario_fundadores_4.JPG"
+      "../../assets/img/fotos_escenarios/escenario_tenis_3.JPG",
+      "../../assets/img/fotos_escenarios/escenario_placas_5.JPG",
     ]
+    this.heroes=["bsbdfbd","fvdfv","sfsggs"];
   }
 
   ngOnInit() {
