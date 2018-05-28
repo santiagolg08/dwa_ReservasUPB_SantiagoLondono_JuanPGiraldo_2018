@@ -40,3 +40,17 @@
     border-radius: 50%;
     background-color: #7f060b;
 }
+
+@media screen and (max-width: 630px){
+    .titulo{
+        font-size: 35px;
+        width: 100%;
+        margin-left: 0%;
+    }
+
+    .select_dia{
+        width: 60%;
+        margin-left: 20%;
+        margin-bottom: 5%;
+    }
+}
