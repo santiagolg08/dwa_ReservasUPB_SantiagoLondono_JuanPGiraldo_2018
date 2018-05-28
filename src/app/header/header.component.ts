@@ -63,6 +63,10 @@ export class HeaderComponent implements OnInit {
     this._router.navigate(['/escenarios']);
   }
 
+  irAContacto() {
+    this._router.navigate(['/contacto']);
+  }
+
   irADeportes(key) {
     this._router.navigate(["/deportes/" + key]);
     this.subMenuDeportes();

@@ -11,7 +11,7 @@
         <a *ngFor="let item of escenarios;" (click)="irADeportes(item.$key)">{{item.$key}}</a>
       </div>
     </div>
-    <a class="element_menu" id="btsec_contacto">Contacto</a>
+    <a class="element_menu" id="btsec_contacto" (click)="irAContacto()">Contacto</a>
     <a class="element_add_menu" *ngIf = "(this.authService.currentUserId == '')" (click)="login()" id="btsec_login">Login</a>
     <a class="element_add_menu" *ngIf = "!(this.authService.currentUserId == '')" (click)="misReservas()" id="btsec_mis_reservas">Mis Reservas</a>
     <a class="element_add_menu" *ngIf = "!(this.authService.currentUserId == '')" (click)="cerrarSesion()" id="btsec_cerrar_Secion">Cerrar Sesión</a>

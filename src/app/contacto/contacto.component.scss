@@ -1,0 +1,77 @@
+.mainContacto{
+    width: 100%;
+    height: auto;
+}
+
+.footerContacto{
+    width: 100%;
+	background: linear-gradient(45deg, #6d0707 0%, #ff0026 100%);
+    color: white;
+	position: absolute;
+    bottom: 0;
+    text-align: left;
+}
+
+.containerCto{
+    width: 28%;
+    margin-left: 5%;
+    vertical-align: top;
+    display: inline-block;
+}
+
+.contRedes{
+    width: 28%;
+    margin-left: 5%;
+    vertical-align: top;
+    display: inline-block;
+}
+
+.titCto{
+    font-size: 28px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    font-weight: bold;
+}
+
+.eleCto{
+    font-size: 17px;
+    font-family: Tahoma;
+}
+
+.imgCto{
+    width: 280px;
+    height: 120px;
+    margin-left: 35%;
+    margin-top: 8%;
+}
+.imgRedes{
+    width: 60%;
+    height: 128px;
+}
+
+@media screen and (max-width:620px){
+
+    .footerContacto{
+        background:transparent;
+        color: black;
+        text-align: center;
+    }
+
+    .containerCto{
+        width: 100%;
+        margin-left: 0%;
+        display: block;
+        background-color: transparent;
+    }
+
+    .contRedes{
+        width: 100%;
+        margin-left: 0%;
+        display: block;
+        background-color: #c8c8dd;
+    }
+    .imgCto{
+        display: none;
+    }
+
+}
