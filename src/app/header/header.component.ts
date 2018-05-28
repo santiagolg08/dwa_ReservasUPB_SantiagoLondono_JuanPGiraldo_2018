@@ -40,11 +40,16 @@ export class HeaderComponent implements OnInit {
       document.getElementById("myDropdown").classList.remove("showReservas");
     } else if (event.target.id == "btsec_deportes") {
       document.getElementById("profileMenu").classList.remove("showPerfil");
-    }else{
-      document.getElementById("myDropdown").classList.remove("showReservas");      
+    } else if (event.target.id == "btnMenu") {
+      document.getElementById("myDropdown").classList.remove("showReservas");
       document.getElementById("profileMenu").classList.remove("showPerfil");
+    } else {
+      document.getElementById("myDropdown").classList.remove("showReservas");
+      document.getElementById("profileMenu").classList.remove("showPerfil");
+      document.getElementById("menu").classList.remove("display");
     }
   }
+
 
   public subMenuDeportes() {
     document.getElementById("myDropdown").classList.toggle("showReservas");
@@ -76,19 +81,19 @@ export class HeaderComponent implements OnInit {
     this.subMenuPerfil();
   }
 
-  misReservas(){
+  misReservas() {
     this._router.navigate(["reservas"]);
     this.subMenuPerfil();
   }
 
-  cerrarSesion(){
+  cerrarSesion() {
     this.authService.signOut();
     this._router.navigate(["auth"]);
     this.subMenuPerfil();
   }
 
-  ocultarMenu(){
-    document.getElementById("menu").classList.toggle("display");     
+  ocultarMenu() {
+    document.getElementById("menu").classList.toggle("display");
   }
 }
 
