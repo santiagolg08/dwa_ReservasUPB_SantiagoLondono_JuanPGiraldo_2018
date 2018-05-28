@@ -62,18 +62,23 @@ export class DeportesComponent implements OnInit {
       });
     this.escenarioService.getListaEscenarios().snapshotChanges()
       .subscribe(item => {
+        let array : Escenarios[] = [];
         item.forEach(element => {
           let x = element.payload.toJSON();
           x["$key"] = element.key;
-          this.lstEscenarios.push(x as Escenarios);
+          array.push(x as Escenarios);
         });
+        this.lstEscenarios = array;
       });
-    this.deporteService.getReservas().snapshotChanges().subscribe(item => {
+    this.deporteService.getReservas().snapshotChanges()
+    .subscribe(item => {
+      let array : Reserva[] = [];
       item.forEach(element => {
         let x = element.payload.toJSON();
         x["$key"] = element.key;
-        this.lst_reservas.push(x as Reserva);
+        array.push(x as Reserva);
       });
+      this.lst_reservas = array;
     });
   }
 
