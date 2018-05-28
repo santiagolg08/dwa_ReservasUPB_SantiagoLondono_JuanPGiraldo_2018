@@ -1,0 +1,22 @@
+{
+  "short_name": "Reservas UPB",
+  "name": "Reservas UPB",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "./assets/img/escudo.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "./assets/img/escudo.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "./assets/img/escudo.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ]
+}
